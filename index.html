@@ -262,6 +262,10 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 
 /* ---------- 電影法（默片＋辯士） ---------- */
 .fm{flex:1 1 auto;display:flex;flex-direction:column;gap:calc(14px*var(--s));min-height:0}
+.vbox{display:flex;justify-content:center}
+.fvid{display:block;height:calc(600px*var(--s));aspect-ratio:16/9;max-width:100%;border-radius:18px;background:#000;box-shadow:var(--shadow)}
+.btn.pulse{animation:bp 1s ease-in-out infinite}
+@keyframes bp{50%{transform:scale(1.08)}}
 .tasks{flex:1 1 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:calc(18px*var(--s))}
 .film{position:relative;background:#18120C;border-radius:18px;box-shadow:var(--shadow);
   padding:calc(14px*var(--s)) calc(48px*var(--s))}
@@ -479,6 +483,7 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 .mob .cover.has-img h1{font-size:min(14vh,9.4vw)}
 .mob .cover.has-img .sub{font-size:min(5.4vh,4.6vw)}
 .mob .fm{flex:0 0 auto}
+.mob .fvid{height:auto;width:100%}
 .mob .fm-tasks.has-poster,.mob .pts-img,.mob .gr-top{flex-direction:column;align-items:stretch}
 .mob .poster{height:auto;width:62%;align-self:center}
 .mob .pimg,.mob .gimg{height:auto;width:100%}
@@ -609,9 +614,10 @@ const DECK = {
   src:"資料來源：國健署 2017–2020 國民營養健康狀況變遷調查（成人盛行率 26.8%）；WHO 全球高血壓報告 2025；衛福部 113 年死因統計（心臟病第 2、腦血管第 4、高血壓性疾病第 6）",
   note:"比手指頭作答。揭曉後<b>不要恐嚇</b>，要這樣接：「三成的人毋知——毋是因為伊無注意，是因為<b>高血壓無感覺</b>。所以咱今仔日學會曉量，就已經贏一半矣。」也可以問：「咱據點有血壓機無？誰固定咧量？」讓長輩自己說出據點的資源。"},
 
-/* 8 */ {t:"film", tag:"互動・電影法①", h:"默片電影院：阿雪姨量血壓",
-  lead:"古早電影院沒有聲音，旁邊有「辯士」在講戲。今天老師當辯士！先領三個任務，看完再投票——<b>這一題沒有標準答案</b>。",
+/* 8 */ {t:"film", tag:"互動・電影法①", h:"紙劇場小電影：阿雪姨量血壓",
+  lead:"先領三個任務，再看一部一分半的小電影（有旁白和大字幕），看完一起投票——<b>這一題沒有標準答案</b>。",
   poster:"img/film1.jpg", alt:"默片風格海報：阿雪姨量血壓",
+  video:"video/film1.mp4", vposter:"video/film1-poster.jpg",
   tasks:[
     {k:"任務一",v:"阿雪姨量血壓之前，做了哪些事？"},
     {k:"任務二",v:"她量的時候，哪裡怪怪的？"},
@@ -635,7 +641,7 @@ const DECK = {
      it:[["🎬",50,46,150],["❓",76,28,84]]}],
   vote:{q:"如果是您看到阿雪姨這樣量，您會怎麼跟她說？",
     opts:["直接提醒她：「這樣量不準啦！」","陪她坐下來，一起重新量一次","建議她去藥局，請人教她量"]},
-  note:"<b>辯士怎麼當</b>：按「開演」後一幕一幕按「下一幕」，每一幕用台語講辯士台詞（打開講師提示 N，會跟著每一幕顯示台詞）。語氣要誇張、有戲味，長輩會笑。演完<b>先回到三個任務</b>讓長輩說：任務一＝<b>啉咖啡、蹈樓梯、無歇睏</b>；任務二＝<b>講電話、喘猶未停就量</b>；任務三＝<b>量足濟擺揀上低的寫，醫師看著的是假的正常</b>。投票<b>沒有標準答案</b>，只計票：三種說法都出於關心，問各據點「你會按怎講？」——帶出「<b>用陪伴代替指正</b>」。可順勢問一句感受：「若是你是阿雪姨，予人講『按呢量毋著』，你會歡喜無？」"},
+  note:"按「🎬 開演！」會直接播放約一分半的紙雕動畫（國語旁白＋大字幕，可隨時按暫停用台語補充；講師手冊 #notes 裡有每一幕的台語辯士台詞可參考）。<b>線上分享畫面一定要勾選分享音訊</b>（Google Meet 分享分頁時勾「分享分頁音訊」；Teams 開「包含電腦音效」；Zoom 勾「分享音效」），課前先測。看完<b>先回到三個任務</b>讓長輩說：任務一＝<b>啉咖啡、蹈樓梯、無歇睏</b>；任務二＝<b>講電話、喘猶未停就量</b>；任務三＝<b>量足濟擺揀上低的寫，醫師看著的是假的正常</b>。投票<b>沒有標準答案</b>，只計票：三種說法都出於關心，問各據點「你會按怎講？」——帶出「<b>用陪伴代替指正</b>」。可順勢問一句感受：「若是你是阿雪姨，予人講『按呢量毋著』，你會歡喜無？」"},
 
 /* 9 */ {t:"pic", tag:"互動四・看圖找錯", h:"阿雪姨重新量，這次對了嗎？",
   lead:"圖上有 8 個號碼，其中 <b>4 個做錯了</b>。點號碼會放大給大家看：這樣做，可以嗎？",
@@ -1097,18 +1103,20 @@ record:s=>head(s)+`<div class="body"><div class="rec">
 
 film:s=>head(s)+`<div class="body"><div class="fm">
   <div class="fm-tasks ${s.poster?'has-poster':'tasks'}">${s.poster?`<img class="poster" src="${s.poster}" alt="${s.alt||""}"><div class="tasks">`:""}`+s.tasks.map((t,i)=>`<div class="card ${cardCls(i)}"><div class="k">${t.k}</div><div class="v">${t.v}</div></div>`).join("")+`${s.poster?'</div>':''}</div>
-  <div class="fm-film off"><div class="film"><div class="fstage"></div>
+  <div class="fm-film off">${s.video?`<div class="vbox"><video class="fvid" src="${s.video}" poster="${s.vposter||""}" preload="metadata" playsinline controls></video></div>`:`<div class="film"><div class="fstage"></div>
     <div class="ftitle" data-full="${s.scenes.reduce((a,c)=>c.cap.length>a.length?c.cap:a,"").replace(/"/g,"&quot;")}"></div>
-    <div class="fscn"></div></div></div>
+    <div class="fscn"></div></div>`}</div>
   <div class="fm-vote off" style="display:flex;flex-direction:column;gap:calc(14px*var(--s));flex:1 1 auto">
     <div class="vote-q">🗳 ${s.vote.q}</div>
     <div class="vote-opts">`+s.vote.opts.map((o,i)=>`<button class="vo" data-i="${i}"><span class="ltr2">${"①②③"[i]}</span><span>${o}</span><span class="cntn">0</span></button>`).join("")+`</div>
   </div></div>
   <div class="acts">
-    <button class="btn or go-film">🎬 開演！</button>
+    <button class="btn or go-film">🎬 開演！</button>${s.video?`
+    <button class="btn v-play off">⏸ 暫停</button>
+    <button class="btn gh v-re off">↺ 從頭播</button>`:`
     <button class="btn gh f-prev off">◀ 上一幕</button>
     <button class="btn f-next off">下一幕 ▶</button>
-    <button class="btn gh f-auto off">⏯ 自動播放</button>
+    <button class="btn gh f-auto off">⏯ 自動播放</button>`}
     <button class="btn or go-vote off">演完了，來投票 ▶</button>
     <button class="btn gh go-task off">◀ 回到任務</button>
     <button class="btn gh rsv off">票數歸零</button>
@@ -1270,7 +1278,30 @@ function bind(d,s,i){
         q:s.steps[k].k, keepQ:true, revealed:true, cls:"good", t:"👍 這樣做就對了", b:s.steps[k].v}); } });
   }
 
-  if(s.t==="film"){
+  if(s.t==="film"&&s.video){                 /* 影片版電影法：開演就直接播放 */
+    const T=$(".fm-tasks",d), F=$(".fm-film",d), V=$(".fm-vote",d), v=$(".fvid",d), B=n=>$("."+n,d);
+    const label=()=>{ B("v-play").textContent=v.paused?"▶ 播放":"⏸ 暫停"; };
+    const mode=m=>{ d.dataset.mode=m;
+      T.classList.toggle("off",m!=="t"); F.classList.toggle("off",m!=="f"); V.classList.toggle("off",m!=="v");
+      B("go-film").classList.toggle("off",m!=="t");
+      ["v-play","v-re","go-vote"].forEach(n=>B(n).classList.toggle("off",m!=="f"));
+      B("go-task").classList.toggle("off",m==="t"); B("rsv").classList.toggle("off",m!=="v");
+      if(m!=="f")v.pause();
+      fit(d); if(idx===i&&noteOn){paintNote();noteSpace()} };
+    B("go-film").onclick=()=>{ mode("f"); B("go-vote").classList.remove("pulse"); try{v.currentTime=0}catch(e){} v.play().catch(()=>{}); };
+    B("v-play").onclick=()=>{ v.paused?v.play().catch(()=>{}):v.pause(); };
+    B("v-re").onclick=()=>{ try{v.currentTime=0}catch(e){} v.play().catch(()=>{}); B("go-vote").classList.remove("pulse"); };
+    v.addEventListener("play",label); v.addEventListener("pause",label);
+    v.addEventListener("ended",()=>{ label(); B("go-vote").classList.add("pulse"); });
+    B("go-vote").onclick=()=>{ B("go-vote").classList.remove("pulse"); mode("v"); };
+    B("go-task").onclick=()=>mode("t");
+    B("rsv").onclick=()=>$$(".vo",d).forEach(x=>{x.classList.remove("on");$(".cntn",x).textContent="0"});
+    $$(".vo",d).forEach(x=>x.onclick=()=>{ const c=$(".cntn",x); c.textContent=(+c.textContent)+1; x.classList.add("on"); ding(1); });
+    d._stop=()=>v.pause();
+    d.dataset.mode="t";
+  }
+
+  if(s.t==="film"&&!s.video){
     const T=$(".fm-tasks",d), F=$(".fm-film",d), V=$(".fm-vote",d), st=$(".fstage",d), ti=$(".ftitle",d), sc=$(".fscn",d);
     const B=n=>$("."+n,d);
     let cur=0, auto=null;
@@ -1433,7 +1464,7 @@ TOC.addEventListener("click",e=>{ if(e.target===TOC)TOC.classList.remove("on") }
 function paintNote(){
   const s=DECK.slides[idx], d=$$(".slide")[idx];
   let h="";
-  if(s.t==="film"&&d.dataset.mode==="f"){const c=s.scenes[d._film()];
+  if(s.t==="film"&&!s.video&&d.dataset.mode==="f"){const c=s.scenes[d._film()];
     $("#note").innerHTML=`<span class="say">🎙 <b>辯士台詞（第 ${d._film()+1} 幕）</b>　${c.say}</span><span style="opacity:.75">（演完後回到任務、投票時，會再顯示完整講師提示）</span>`; return}
   h+=s.note?("🎙 <b>講師提示</b>　"+s.note):"（本頁無提示）";
   $("#note").innerHTML=h;
