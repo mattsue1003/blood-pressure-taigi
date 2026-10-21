@@ -354,6 +354,7 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 .mt>:first-child{flex:.9 1 0}.mt>:last-child{flex:1.2 1 0}
 .pic>:first-child{flex:1.7 1 0}.pic>:last-child{flex:1 1 0}
 .pose>:first-child{flex:1.25 1 0}.pose>:last-child{flex:1 1 0}
+.pose.has-img>:first-child{flex:1.75 1 0}
 .rec>:first-child{flex:.95 1 0}.rec>:last-child{flex:1.25 1 0}
 .mvx>:first-child{flex:1 1 0}.mvx>:last-child{flex:1.12 1 0}
 .gm>:first-child{flex:.85 1 0}.gm>:last-child{flex:1.2 1 0}
@@ -415,6 +416,29 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 .toc-it i{font-style:normal;color:var(--teal);margin-right:.4em}
 .toc-sec{grid-column:1/-1;font-size:clamp(15px,1.4vw,20px);font-weight:900;color:var(--sdg);margin-top:.4em}
 
+/* ---------- 放大特寫（看圖找錯） ---------- */
+#zoom{position:fixed;inset:0;z-index:56;background:rgba(8,24,28,.86);display:none;place-items:center;padding:3vh 3vw}
+#zoom.on{display:grid}
+.zm-card{background:var(--bg);border-radius:26px;box-shadow:0 24px 80px rgba(0,0,0,.45);width:min(1280px,95vw);max-height:93vh;overflow:auto;
+  display:flex;gap:clamp(14px,2vw,30px);padding:clamp(14px,2.2vw,30px);align-items:center;animation:pop .25s ease}
+.zm-view{position:relative;flex:1.45 1 0;min-width:0;aspect-ratio:4/3;border-radius:18px;background-color:#fff;background-repeat:no-repeat;
+  border:4px solid var(--line);overflow:hidden}
+.zm-ring{position:absolute;width:26%;aspect-ratio:1;border-radius:50%;border:7px solid var(--amber);transform:translate(-50%,-50%);
+  animation:zr 1.4s ease-in-out infinite;pointer-events:none}
+@keyframes zr{50%{border-color:rgba(244,169,60,.25)}}
+.zm-side{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px)}
+.zm-no{font-size:clamp(20px,2.3vw,32px);font-weight:900;color:var(--teal)}
+.zm-q{font-size:clamp(30px,3.8vw,56px);font-weight:900;line-height:1.25;color:var(--ink)}
+.zm-hint{font-size:clamp(18px,1.9vw,28px);font-weight:800;color:#7A8A8E}
+.zm-ans{border-radius:18px;padding:clamp(12px,1.6vw,22px);font-weight:700;line-height:1.6;font-size:clamp(19px,2.1vw,30px)}
+.zm-ans b{color:inherit;text-decoration:underline;text-underline-offset:.15em}
+.zm-ans.bad{background:#FBEBE9;border:3px solid var(--bad);color:#6E2219}
+.zm-ans.good{background:#E8F6ED;border:3px solid var(--good);color:#1C5B39}
+.zm-t{font-size:1.3em;font-weight:900;margin-bottom:.15em}
+.zm-acts{display:flex;gap:12px;flex-wrap:wrap}
+.zm-acts .btn{font-size:clamp(18px,1.9vw,28px)}
+@media(max-width:820px){.zm-card{flex-direction:column;align-items:stretch}.zm-view{flex:none;width:100%}}
+
 /* ---------- 插圖 ---------- */
 .cv-img{position:absolute;right:4vw;top:50%;transform:translateY(-50%);z-index:1;
   width:min(40vw,60vh*1.5);aspect-ratio:3/2;object-fit:cover;border-radius:26px;
@@ -458,6 +482,7 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 .mob .fm-tasks.has-poster,.mob .pts-img,.mob .gr-top{flex-direction:column;align-items:stretch}
 .mob .poster{height:auto;width:62%;align-self:center}
 .mob .pimg,.mob .gimg{height:auto;width:100%}
+.mob .pic-svg{height:auto!important;width:100%!important}
 .swipe-tip{display:none}
 .mob .swipe-tip{display:block;margin-top:1.2em;font-size:15px;color:#BFE3E6;font-weight:700}
 @media(max-width:820px){
@@ -481,6 +506,18 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
     <div class="ans-t"></div>
     <div class="ans-b"></div>
     <button class="btn or ans-ok">知道了，繼續 ▶</button>
+  </div>
+</div>
+<div id="zoom" role="dialog" aria-modal="true">
+  <div class="zm-card">
+    <div class="zm-view"><i class="zm-ring"></i></div>
+    <div class="zm-side">
+      <div class="zm-no"></div>
+      <div class="zm-q">這樣做，可以嗎？</div>
+      <div class="zm-hint">請大家比 ⭕ 可以，或 ❌ 不行</div>
+      <div class="zm-ans off"><div class="zm-t"></div><div class="zm-b"></div></div>
+      <div class="zm-acts"><button class="btn or zm-go">揭曉答案 ▶</button><button class="btn gh zm-x">關閉 ✕</button></div>
+    </div>
   </div>
 </div>
 <div id="toc">
@@ -601,21 +638,25 @@ const DECK = {
   note:"<b>辯士怎麼當</b>：按「開演」後一幕一幕按「下一幕」，每一幕用台語講辯士台詞（打開講師提示 N，會跟著每一幕顯示台詞）。語氣要誇張、有戲味，長輩會笑。演完<b>先回到三個任務</b>讓長輩說：任務一＝<b>啉咖啡、蹈樓梯、無歇睏</b>；任務二＝<b>講電話、喘猶未停就量</b>；任務三＝<b>量足濟擺揀上低的寫，醫師看著的是假的正常</b>。投票<b>沒有標準答案</b>，只計票：三種說法都出於關心，問各據點「你會按怎講？」——帶出「<b>用陪伴代替指正</b>」。可順勢問一句感受：「若是你是阿雪姨，予人講『按呢量毋著』，你會歡喜無？」"},
 
 /* 9 */ {t:"pic", tag:"互動四・看圖找錯", h:"阿雪姨重新量，這次對了嗎？",
-  lead:"圖上有 8 個號碼，其中 <b>4 個做錯了</b>。一個一個問大家：這樣做，可以嗎？",
+  lead:"圖上有 8 個號碼，其中 <b>4 個做錯了</b>。點號碼會放大給大家看：這樣做，可以嗎？",
   need:4,
+  img:"img/spot-bad.jpg", iw:1536, ih:1024, alt:"阿雪姨穿厚外套、邊講手機邊量血壓的插圖",
   hs:[
-    {x:150,y:64, n:"邊量邊講電話", w:1, why:"講話會讓血壓上升。量的時候<b>安靜、不說話</b>，電話等量完再回。"},
-    {x:336,y:104, n:"手臂式血壓機", d:1, ok:"綁在上臂的血壓機，是醫師最推薦的家用款式。"},
-    {x:120,y:156, n:"身體前彎、背沒靠", w:1, why:"身體要<b>坐正、背靠椅背</b>，整個人放鬆了再量。"},
-    {x:254,y:170, n:"手臂放在桌上", d:1, ok:"手有地方靠，袖帶跟心臟差不多高，量起來比較準。"},
-    {x:190,y:149, n:"袖帶綁在厚外套上", w:1, why:"隔著厚衣服量不準。<b>袖帶要直接綁在手臂皮膚上</b>，袖子太緊就把外套脫掉。"},
-    {x:408,y:146, n:"準備紀錄本和筆", d:1, ok:"量完馬上寫，不怕忘記，看診時醫師最需要。"},
-    {x:220,y:214, n:"翹腳", w:1, why:"翹腳會讓血壓變高。<b>兩腳平放在地上</b>，不要交叉。"},
-    {x:478,y:150, n:"藥盒：量完再吃藥", d:1, ok:"早上<b>吃藥前</b>量，才看得到身體真正的血壓。"}],
+    {x:605,y:265, bx:460,by:160, n:"邊量邊講電話", w:1, why:"講話會讓血壓上升。量的時候<b>安靜、不說話</b>，電話等量完再回。"},
+    {x:1125,y:425, bx:1125,by:335, z:3, n:"手臂式血壓機", d:1, ok:"綁在上臂的血壓機，是醫師最推薦的家用款式。"},
+    {x:285,y:455, bx:200,by:250, n:"身體前彎、背沒靠", w:1, why:"身體要<b>坐正、背靠椅背</b>，整個人放鬆了再量。"},
+    {x:985,y:420, bx:985,by:330, z:3, n:"手臂放在桌上", d:1, ok:"手有地方靠，袖帶跟心臟差不多高，量起來比較準。"},
+    {x:745,y:365, bx:805,by:292, z:3, n:"袖帶綁在厚外套上", w:1, why:"隔著厚衣服量不準。<b>袖帶要直接綁在手臂皮膚上</b>，袖子太緊就把外套脫掉。"},
+    {x:810,y:500, bx:700,by:585, z:2.8, n:"準備紀錄本和筆", d:1, ok:"量完馬上寫，不怕忘記，看診時醫師最需要。"},
+    {x:580,y:675, bx:800,by:715, n:"翹腳", w:1, why:"翹腳會讓血壓變高。<b>兩腳平放在地上</b>，不要交叉。"},
+    {x:1205,y:530, bx:1205,by:622, z:3.2, n:"藥盒：量完再吃藥", d:1, ok:"早上<b>吃藥前</b>量，才看得到身體真正的血壓。"}],
   fb:"四個要改：<b>講電話、身體前彎背沒靠、隔著外套綁袖帶、翹腳</b>。<br>記住口訣：<b>背靠椅、腳踩平、手放桌、綁皮膚、不講話</b>。",
-  note:"帶法：<b>一個號碼一個號碼問</b>「這樣做，可以嗎？」，請大家比 ⭕ 或 ❌，再點號碼揭曉。點到做對的（亮綠色）要大力肯定：「這个做著好！」誘答的四個（血壓機、手放桌、紀錄本、藥盒）都是好習慣。最多人會漏掉的是<b>「隔外套綁」</b>——冬天快到了，長輩常常懶得脫外套，台語提醒：<b>「袖帶愛縛佇肉頂，毋通縛佇衫仔頂。」</b>"},
+  note:"帶法：<b>點一個號碼，會跳出放大特寫</b>，先問全班「這樣做，可以嗎？」，請大家比 ⭕ 或 ❌、各據點回報後，再按「揭曉答案」（按 Enter 或空白鍵也可以），看完按「關閉」換下一個號碼。點到做對的（亮綠色）要大力肯定：「這个做著好！」誘答的四個（血壓機、手放桌、紀錄本、藥盒）都是好習慣。最多人會漏掉的是<b>「隔外套綁」</b>——冬天快到了，長輩常常懶得脫外套，台語提醒：<b>「袖帶愛縛佇肉頂，毋通縛佇衫仔頂。」</b>四個錯誤都找到後，關閉特寫會跳出總整理。"},
 
 /* 10 */ {t:"pose", tag:"跟老師做・姿勢示範", h:"正確量血壓：五句口訣跟我做",
+  img:"img/spot-good.jpg", iw:1536, ih:1024, ph:520, alt:"阿嬤坐正、背靠椅背、手放桌上，用手臂式血壓計正確量血壓的插圖",
+  marks:[{x:300,y:430,bx:140,by:420,z:2.4},{x:740,y:910,bx:890,by:950,z:2.6},{x:830,y:380,bx:850,by:290,z:3},
+         {x:585,y:345,bx:640,by:255,z:3.2},{x:505,y:195,bx:620,by:118,z:3.4}],
   lead:"量之前三件事：<b>半小時內不喝咖啡茶、不抽菸、不運動</b>；先上廁所；坐下來<b>休息 5 分鐘</b>。",
   steps:[
     {k:"背靠椅", v:"屁股坐進去，背靠椅背"},
@@ -930,6 +971,44 @@ function sceneGood(){
   </svg>`;
 }
 
+/* 插畫（點陣圖）＋號碼：號碼用原本 470 寬的尺寸設計，依圖寬等比放大。
+   x,y＝物件位置（放大特寫的中心）；bx,by＝號碼擺放位置（放在物件旁，不蓋住細節） */
+function photoScene(s,marks,cls){
+  const k=(s.iw/470).toFixed(3);
+  return `<svg class="pic-svg" viewBox="0 0 ${s.iw} ${s.ih}" style="height:calc(${s.ph||470}px*var(--s));width:auto;max-width:100%;aspect-ratio:${s.iw}/${s.ih};margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+  <image href="${s.img}" width="${s.iw}" height="${s.ih}"/>`+
+  marks.map((m,i)=>`<g class="${cls}" data-i="${i}" transform="translate(${m.bx??m.x} ${m.by??m.y}) scale(${k})">
+    <circle class="ring" r="17"/><circle r="26" fill="transparent"/><circle class="bdg" r="17"/><text text-anchor="middle" y="7">${i+1}</text></g>`).join("")+`</svg>`;
+}
+
+/* ---------- 放大特寫 ---------- */
+const ZM=$("#zoom"); let zmCtx=null;
+function zmShowAns(on){
+  const c=zmCtx; if(!c)return;
+  $(".zm-q",ZM).classList.toggle("off",on&&!c.keepQ); $(".zm-hint",ZM).classList.toggle("off",on||!c.hint);
+  $(".zm-go",ZM).classList.toggle("off",on);
+  const a=$(".zm-ans",ZM); a.classList.toggle("off",!on);
+  if(on){ a.className="zm-ans "+c.cls; $(".zm-t",a).innerHTML=c.t; $(".zm-b",a).innerHTML=c.b; }
+}
+function openZoom(c){
+  zmCtx=c; ZM.classList.add("on");
+  $(".zm-no",ZM).textContent=c.no; $(".zm-q",ZM).innerHTML=c.q||"這樣做，可以嗎？"; $(".zm-hint",ZM).textContent=c.hint||"";
+  zmShowAns(!!c.revealed);
+  const v=$(".zm-view",ZM);
+  requestAnimationFrame(()=>{
+    const W=v.clientWidth,H=v.clientHeight,z=c.z||2.6,cw=c.iw/z,chh=Math.min(c.ih,cw*H/W),sc=W/cw;
+    const x0=Math.max(0,Math.min(c.iw-cw,c.x-cw/2)), y0=Math.max(0,Math.min(c.ih-chh,c.y-chh/2));
+    v.style.backgroundImage=`url(${c.img})`;
+    v.style.backgroundSize=(c.iw*sc)+"px "+(c.ih*sc)+"px";
+    v.style.backgroundPosition=(-x0*sc)+"px "+(-y0*sc)+"px";
+    const r=$(".zm-ring",v); r.style.left=((c.x-x0)*sc)+"px"; r.style.top=((c.y-y0)*sc)+"px";
+  });
+}
+function closeZoom(){ if(!ZM.classList.contains("on"))return; ZM.classList.remove("on"); const c=zmCtx; zmCtx=null; if(c&&c.onClose)c.onClose(); }
+$(".zm-go",ZM).onclick=()=>{ if(zmCtx&&zmCtx.onReveal)zmCtx.onReveal(); zmShowAns(true); };
+$(".zm-x",ZM).onclick=closeZoom;
+ZM.addEventListener("click",e=>{ if(e.target===ZM)closeZoom() });
+
 /* ---------- 版型 ---------- */
 function head(s){
   let t="";
@@ -994,7 +1073,7 @@ choice:s=>head(s)+`<div class="body">`+(s.mon
   (s.mon?`</div></div></div>`:`</div>`)+`</div>`+srcline(s),
 
 pic:s=>head(s)+`<div class="body"><div class="pic">
-  <div class="pic-l">${sceneBad().replace("</svg>",s.hs.map((h,i)=>`<g class="hs" data-i="${i}" transform="translate(${h.x} ${h.y})">
+  <div class="pic-l">${s.img?photoScene(s,s.hs,"hs"):sceneBad().replace("</svg>",s.hs.map((h,i)=>`<g class="hs" data-i="${i}" transform="translate(${h.x} ${h.y})">
     <circle class="ring" r="17"/><circle r="26" fill="transparent"/><circle class="bdg" r="17"/><text text-anchor="middle" y="7">${i+1}</text></g>`).join("")+"</svg>")}</div>
   <div class="pic-side">
     <div class="slots">`+s.hs.map((h,i)=>`<div class="slot" data-i="${i}"><span class="sn">${i+1}</span><span class="sl">？</span></div>`).join("")+`</div>
@@ -1002,8 +1081,8 @@ pic:s=>head(s)+`<div class="body"><div class="pic">
     ${acts(`<span class="cnt">找到 <b class="c0">0</b> / ${s.need}</span><button class="btn gh sw">顯示答案</button>`)}
   </div></div></div>`,
 
-pose:s=>head(s)+`<div class="body"><div class="pose">
-  <div>${sceneGood().replace("</svg>",[[100,168],[236,312],[240,174],[150,134],[152,62]].map((b,i)=>`<g class="pbd" data-i="${i}" transform="translate(${b[0]} ${b[1]})">
+pose:s=>head(s)+`<div class="body"><div class="pose${s.img?' has-img':''}">
+  <div>${s.img?photoScene(s,s.marks,"pbd"):sceneGood().replace("</svg>",[[100,168],[236,312],[240,174],[150,134],[152,62]].map((b,i)=>`<g class="pbd" data-i="${i}" transform="translate(${b[0]} ${b[1]})">
     <circle class="ring" r="18"/><circle class="bdg" r="17"/><text text-anchor="middle" y="7">${i+1}</text></g>`).join("")+"</svg>")}</div>
   <div class="steps">`+s.steps.map((st,i)=>`<button class="stp" data-i="${i}"><span class="sn">${i+1}</span><span class="tx"><span class="k">${st.k}</span><span class="v">${st.v}</span></span></button>`).join("")+`</div>
   </div></div>`,
@@ -1153,17 +1232,28 @@ function bind(d,s,i){
     const L=s.hs.reduce((a,g)=>(g.n+(g.why||g.ok)).length>(a.n+(a.why||a.ok)).length?g:a);
     why.dataset.full='⚠️ <b>'+L.n+'</b>：'+(L.why||L.ok);
     const slot=k=>$$(".slot",d)[k];
-    $$(".hs",d).forEach(h=>h.onclick=()=>{
-      const k=+h.dataset.i, g=s.hs[k];
+    const summary=()=>d.classList.contains("on")&&showAns("🏆","太棒了，"+s.need+" 個錯誤全部找到！",s.fb);
+    const reveal=k=>{
+      const h=$$(".hs",d)[k], g=s.hs[k];
       if(h.classList.contains("found")||h.classList.contains("safe"))return;
       if(g.d){ h.classList.add("safe"); ding(1); slot(k).className="slot good"; $(".sl",slot(k)).textContent="👍 "+g.n;
         why.innerHTML="👍 <b>"+g.n+"</b>：這樣做很好——"+g.ok; why.classList.remove("idle"); return; }
-      h.classList.add("found"); slot(k).className="slot bad"; $(".sl",slot(k)).textContent="⚠ "+g.n;
+      h.classList.remove("show"); h.classList.add("found"); slot(k).className="slot bad"; $(".sl",slot(k)).textContent="⚠ "+g.n;
       why.innerHTML="⚠️ <b>"+g.n+"</b>："+g.why; why.classList.remove("idle");
       if(!d.dataset.done){ n++; addStar(1); $(".c0",d).textContent=n; }
       ding(1);
-      if(n>=s.need&&!d.dataset.done){d.dataset.done=1;
-        setTimeout(()=>d.classList.contains("on")&&showAns("🏆","太棒了，"+s.need+" 個錯誤全部找到！",s.fb),1100)}
+      if(n>=s.need&&!d.dataset.done){ d.dataset.done=1; d.dataset.sum=1;
+        if(!ZM.classList.contains("on")){ d.dataset.sum=""; setTimeout(summary,1100) } }
+    };
+    $$(".hs",d).forEach(h=>h.onclick=()=>{
+      const k=+h.dataset.i, g=s.hs[k];
+      if(!s.img){ reveal(k); return; }
+      const done=h.classList.contains("found")||h.classList.contains("safe")||h.classList.contains("show");
+      openZoom({img:s.img,iw:s.iw,ih:s.ih,x:g.x,y:g.y,z:g.z,no:"第 "+(k+1)+" 號",hint:"請大家比 ⭕ 可以，或 ❌ 不行",
+        revealed:done, cls:g.w?"bad":"good",
+        t:g.w?"❌ 不行！"+g.n:"⭕ 可以！"+g.n, b:g.w?g.why:g.ok,
+        onReveal:()=>reveal(k),
+        onClose:()=>{ if(d.dataset.sum==="1"){ d.dataset.sum=""; setTimeout(summary,250) } }});
     });
     $(".sw",d).onclick=()=>{
       $$(".hs",d).forEach(h=>{const k=+h.dataset.i,g=s.hs[k];
@@ -1175,7 +1265,9 @@ function bind(d,s,i){
   if(s.t==="pose"){
     const on=k=>{ $$(".stp",d).forEach((b,j)=>b.classList.toggle("on",j<=k)); $$(".pbd",d).forEach((b,j)=>b.classList.toggle("on",j===k)); ding(1) };
     $$(".stp",d).forEach(b=>b.onclick=()=>on(+b.dataset.i));
-    $$(".pbd",d).forEach(b=>b.onclick=()=>on(+b.dataset.i));
+    $$(".pbd",d).forEach(b=>b.onclick=()=>{ const k=+b.dataset.i; on(k);
+      if(s.img){ const m=s.marks[k]; openZoom({img:s.img,iw:s.iw,ih:s.ih,x:m.x,y:m.y,z:m.z,no:"口訣 "+(k+1),
+        q:s.steps[k].k, keepQ:true, revealed:true, cls:"good", t:"👍 這樣做就對了", b:s.steps[k].v}); } });
   }
 
   if(s.t==="film"){
@@ -1385,7 +1477,7 @@ function go(n){
   $("#barfill").style.width=((idx+1)/DECK.slides.length*100)+"%";
   $("#pg").textContent=(idx+1)+" / "+DECK.slides.length;
   const s=DECK.slides[idx], d=$$(".slide")[idx];
-  hideAns(); TOC.classList.remove("on");
+  hideAns(); TOC.classList.remove("on"); ZM.classList.remove("on"); zmCtx=null;
   paintNote(); $("#note").classList.toggle("on",noteOn); noteSpace();
   if(s.t==="score"){
     $(".sc-n",d).textContent=star; $(".sc-m",d).textContent=maxStar;
@@ -1409,6 +1501,10 @@ document.addEventListener("keydown",e=>{
     if(["Escape","Enter"," ","ArrowRight","PageDown"].includes(e.key)){e.preventDefault();hideAns()}
     return; }
   if(TOC.classList.contains("on")){ if(e.key==="Escape")TOC.classList.remove("on"); return; }
+  if(ZM.classList.contains("on")){ e.preventDefault();
+    if(e.key==="Escape")closeZoom();
+    else if(["Enter"," ","ArrowRight"].includes(e.key)){ const g=$(".zm-go",ZM); if(!g.classList.contains("off"))g.click(); else closeZoom(); }
+    return; }
   if(["ArrowRight","PageDown"," "].includes(e.key)){e.preventDefault();go(idx+1)}
   else if(["ArrowLeft","PageUp"].includes(e.key)){e.preventDefault();go(idx-1)}
   else if(e.key==="Home")go(0); else if(e.key==="End")go(DECK.slides.length-1);
@@ -1422,7 +1518,7 @@ let tx=null,ty=0;
 wrap.addEventListener("touchstart",e=>{const t=e.touches[0];tx=t.clientX;ty=t.clientY},{passive:true});
 wrap.addEventListener("touchend",e=>{
   if(tx===null)return; const t=e.changedTouches[0], dx=t.clientX-tx, dy=t.clientY-ty; tx=null;
-  if(ANS.classList.contains("on")||TOC.classList.contains("on"))return;
+  if(ANS.classList.contains("on")||TOC.classList.contains("on")||ZM.classList.contains("on"))return;
   if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6)go(idx+(dx<0?1:-1));
 },{passive:true});
 
