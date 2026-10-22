@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="長者線上社區課程互動簡報：看懂血壓機的三個數字、量血壓的姿勢與 722 原則、紀錄與看診提問，後半段坐姿運動。">
-<title>血壓機講啥物？｜台語互動衛教＋坐姿運動</title>
+<meta name="description" content="長者線上社區課程互動簡報：看懂血壓機的三個數字、為什麼會高、量血壓的姿勢與 722 原則、紀錄與看診提問、台灣可用資源。講師：蔡欣潔 護理師。">
+<title>血壓機講啥物？｜台語互動衛教</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A9%BA%3C/text%3E%3C/svg%3E">
 <style>
 :root{
@@ -60,8 +60,8 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 .cover .body{position:relative;z-index:1;max-width:78%}
 .cover .meta{margin-top:min(4.5vh,3.4vw);font-size:min(2.6vh,1.9vw);color:#BFE3E6;font-weight:700;line-height:1.7}
 .cover .kick{font-size:min(2.8vh,2.1vw);font-weight:800;color:#FFDCA8;letter-spacing:.06em}
-.cover .brand{display:inline-block;margin-top:min(3vh,2.2vw);background:rgba(255,255,255,.14);border-radius:999px;
-  padding:.4em 1.1em;font-size:min(2.6vh,1.9vw);font-weight:900;color:#fff}
+.cover .brand{display:inline-flex;align-items:center;margin-top:min(3vh,2.2vw);background:rgba(255,255,255,.16);border-radius:999px;
+  padding:.35em 1.2em;font-size:min(3.8vh,2.7vw);font-weight:900;color:#fff}
 
 /* ---------- cards ---------- */
 .grid{display:grid;gap:calc(20px*var(--s))}
@@ -133,6 +133,60 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 .cnt{font-size:calc(26px*var(--s));font-weight:900;color:var(--orange)}
 .off{display:none!important}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* ---------- 數字卡、填空、排序、分類、找錯卡 ---------- */
+.stat{background:var(--card);border-radius:22px;border:3px solid var(--line);padding:calc(26px*var(--s));text-align:center;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center}
+.stat .n{font-size:calc(100px*var(--s));font-weight:900;color:var(--orange);line-height:1;letter-spacing:-.02em}
+.stat .u{font-size:calc(28px*var(--s));font-weight:800;color:var(--ink);margin-top:.22em}
+.stat .d{font-size:calc(23px*var(--s));font-weight:600;color:#5D6E72;margin-top:.4em;line-height:1.45}
+.tiles{display:flex;flex-wrap:wrap;gap:calc(15px*var(--s))}
+.body>.tiles{flex:1 1 auto;align-content:center}
+.tile{background:var(--card);border:4px solid var(--line);border-radius:16px;cursor:pointer;color:var(--ink);
+  padding:calc(16px*var(--s)) calc(24px*var(--s));font-size:calc(28px*var(--s));font-weight:800;
+  transition:border-color .15s,background .15s;box-shadow:var(--shadow);position:relative}
+.tile:hover{border-color:var(--amber)}
+.tile.pick{border-color:var(--teal);background:#E3F3F4}
+.tile.used{opacity:.32;cursor:default}
+.tile.right{border-color:var(--good);background:#E8F6ED}
+.tile.wrong{border-color:var(--bad);background:#FBEBE9}
+.tile .ord{position:absolute;top:-.55em;left:-.5em;width:1.9em;height:1.9em;border-radius:50%;
+  background:var(--orange);color:#fff;display:grid;place-items:center;font-size:.62em;font-weight:900}
+.tiles.ord{row-gap:calc(30px*var(--s))}
+.tiles.ord .tile{font-size:calc(30px*var(--s));padding:calc(22px*var(--s)) calc(30px*var(--s))}
+.bins{display:grid;gap:calc(18px*var(--s))}
+.bin{background:#fff;border:4px dashed var(--line);border-radius:20px;padding:calc(16px*var(--s));
+  cursor:pointer;display:flex;flex-direction:column;gap:.45em;transition:border-color .15s,background .15s;min-height:calc(150px*var(--s))}
+.bin:hover{border-color:var(--teal);background:#EEF8F8}
+.bin .bt{font-size:calc(28px*var(--s));font-weight:900;color:var(--teal)}
+.bin .items{display:flex;flex-wrap:wrap;gap:calc(8px*var(--s));align-content:flex-start;flex:1 1 auto}
+.chip{background:#FFF1DE;border:2px solid var(--amber);border-radius:12px;padding:.3em .7em;font-size:calc(22px*var(--s));
+  font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:.45em}
+.chip .x{font-style:normal;width:1.5em;height:1.5em;border-radius:50%;background:rgba(18,52,59,.14);display:grid;place-items:center;font-size:.8em}
+.chip.right{background:#E8F6ED;border-color:var(--good)}
+.chip.wrong{background:#FBEBE9;border-color:var(--bad);text-decoration:line-through}
+.chip.right .x,.chip.wrong .x{display:none}
+.scard{position:relative;background:var(--card);border:4px solid var(--line);border-radius:20px;cursor:pointer;
+  padding:calc(22px*var(--s)) calc(20px*var(--s));font-family:inherit;font-size:calc(32px*var(--s));font-weight:800;line-height:1.4;
+  text-align:center;color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s,background .15s,transform .15s;
+  display:flex;align-items:center;justify-content:center}
+.scard:hover{border-color:var(--amber);transform:translateY(-3px)}
+.scard .no{position:absolute;top:-.5em;left:-.4em;width:1.8em;height:1.8em;border-radius:50%;background:var(--teal);color:#fff;
+  display:grid;place-items:center;font-size:.66em;font-weight:900}
+.scard::after{position:absolute;right:.4em;bottom:.3em;font-size:.6em;font-weight:900}
+.scard.found{border-color:var(--bad);background:#FBEBE9}.scard.found::after{content:"⚠ 有問題";color:var(--bad)}.scard.found .no{background:var(--bad)}
+.scard.safe{border-color:var(--teal);background:#E6F4F5}.scard.safe::after{content:"👍 做得很好";color:var(--teal)}
+.scard.miss{animation:shake .35s}
+.scard.show{border-color:var(--amber);background:#FFF3D6}.scard.show::after{content:"⚠ 有問題";color:#B9741C}.scard.show .no{background:var(--amber)}
+.blanks{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:calc(26px*var(--s));
+  font-size:calc(32px*var(--s));font-weight:700;line-height:2.3;box-shadow:var(--shadow)}
+.bk{display:inline-block;min-width:4.6em;border-bottom:5px solid var(--orange);text-align:center;cursor:pointer;color:var(--orange);font-weight:900;padding:0 .2em}
+.bk.right{color:var(--good);border-bottom-color:var(--good)}
+.bk.wrong{color:var(--bad);border-bottom-color:var(--bad)}
+.card.tl-a{border-color:#F6D8A0}.card.tl-a .k{color:#9A6B00}
+.card.tl-b{border-color:#9ED2D6}.card.tl-b .k{color:var(--teal)}
+.cv-design{display:block;margin-top:.7em;font-size:min(2vh,1.5vw);color:#BFE3E6;font-weight:700}
+.cv-photo{width:min(14vh,10vw);height:min(14vh,10vw);border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.3);vertical-align:middle;margin-right:.6em}
 
 /* ---------- 開場：據點打招呼 ---------- */
 .gr-box{background:#fff;border:3px solid var(--line);border-radius:22px;padding:calc(20px*var(--s)) calc(24px*var(--s));
@@ -366,6 +420,7 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 
 /* ---------- 承諾、成績 ---------- */
 .sec-lead{font-size:calc(38px*var(--hs));font-weight:700;line-height:1.6;color:#3B4F55}
+.sec-lead b{color:var(--orange)}
 .sec-h{font-size:calc(84px*var(--hs));font-weight:900;line-height:1.12;color:var(--ink)}
 .pl{background:var(--card);border:4px solid var(--line);border-radius:20px;cursor:pointer;
   padding:calc(22px*var(--s));font-size:calc(29px*var(--s));font-weight:800;line-height:1.4;
@@ -549,31 +604,29 @@ h2{font-size:calc(54px*var(--hs));line-height:1.22;font-weight:900;margin:.2em 0
 
 <script>
 /* =========================================================================
-   教案資料 — 前段：衛教問答（含兩段電影法）｜後段：坐姿運動
+   教案資料 — 衛教問答（含兩段紙劇場小電影），講師：蔡欣潔 護理師
    ========================================================================= */
 const DECK = {
   title:"血壓機講啥物？",
   slides:[
 
-/* 1 */ {t:"cover", num:"722", kicker:"線上社區健康課程｜台語開講",
+/* 1 */ {sec:"開場", t:"cover", num:"722", kicker:"線上社區健康課程｜台語開講",
   h:"血壓機講啥物？", sub:"做伙看懂健康數字",
-  meta:"前半段：看懂數字・量的姿勢・紀錄與看診　◆　後半段：坐著動，血壓穩",
-  brand:"愛迪樂｜鍾孟修 職能治療師",
+  meta:"看懂數字・量對姿勢・寫好紀錄・看診會問",
+  brand:"講師｜蔡欣潔 護理師", design:"教材設計｜愛迪樂 鍾孟修 職能治療師",
   img:"img/cover.jpg", alt:"阿嬤坐在餐桌前，用手臂式血壓計量血壓的插圖",
-  note:"用台語開場：<b>「逐家午安！我是孟修老師。今仔日欲佮逐家開講：血壓機彼三个數字，到底咧講啥物？」</b>先預告流程：前半段開講、問答、看兩齣「默片電影」，後半段坐咧做運動。提醒據點工作人員：<b>喇叭、麥克風</b>先試一下，等一下要請大家出聲、比手勢。"},
+  note:"直接進入課程（不用逐一點名）。用台語開場：<b>「逐家午安！我是欣潔護理師。今仔日欲佮逐家開講：血壓機彼三个數字，到底咧講啥物？」</b>預告流程：先聽大家講、看懂數字、看兩齣紙劇場小電影、最後總複習。提醒各據點工作人員<b>喇叭、麥克風</b>先試，等一下要請大家出聲、比手勢：<b>對比 ⭕、毋著打 ❌、選答案比手指頭</b>。"},
 
-/* 2 */ {t:"greet", tag:"開場・相借問", h:"各位據點的朋友，午安！",
-  lead:"老師一個一個跟大家打招呼。輪到您的據點，請<b>打開麥克風</b>，大聲回一句：「老師好！」",
-  sites:["彰化縣伸港鄉溪底社區發展協會"],
-  img:"img/online.jpg", alt:"社區據點的長輩對著電視螢幕上的線上老師揮手",
-  gestures:[
-    {e:"⭕",k:"對",v:"雙手舉高，比一個大圓"},
-    {e:"❌",k:"不對",v:"雙手在胸前打叉"},
-    {e:"☝️✌️",k:"選答案",v:"比 1、2、3、4 根手指"},
-    {e:"👍",k:"讚！",v:"比讚、拍拍手"}],
-  note:"<b>每個據點都要點名問候</b>（主辦單位的重點要求）。點一下據點名稱會亮起「👋」，代表已經打過招呼；有其他報名的據點，在下方輸入名稱按「＋新增」。台語問候參考：<b>「伸港溪底的阿公阿嬤，恁好！今仔日食飽未？」</b>請工作人員開麥克風，讓長輩回應。接著帶大家<b>練一次手勢</b>：「對就比⭕、毋著就打❌、選答案就比手指頭」——等一下每一題都用得到，練一次大家就敢比。"},
+/* 2 */ {t:"points", tag:"先聽大家講", h:"大家常聽到的說法",
+  lead:"這些話您一定聽過。<b>先不分對錯</b>，您聽過哪一句？",
+  cols:2, items:[
+    {k:"😶 沒感覺", v:"「我又沒頭痛、沒頭暈，血壓哪會高？」"},
+    {k:"💊 吃一輩子", v:"「藥一吃就要吃到老，所以我不敢開始。」"},
+    {k:"⚠️ 會洗腎", v:"「聽說西藥吃久了，會傷腎臟。」"},
+    {k:"🧂 自己會好", v:"「少吃鹹一點，血壓自己就降下來。」"}],
+  note:"這頁就是開場互動，<b>不用逐一點名</b>，直接進課。請各據點<b>比手指頭</b>：聽過第幾句？（1～4）也可以請一位長輩開麥克風說說看。<b>先不要糾正</b>，台語這樣接：<b>「這幾句，咱今仔日一句一句來看——聽完你家己判斷。」</b>對應的頁面：①沒感覺→下一頁圈叉題；②吃一輩子、③會洗腎→「血壓一直高會怎樣」與用藥快問快答；④自己會好→「為什麼血壓會高」的改得動。"},
 
-/* 3 */ {t:"ox", tag:"互動一・圈叉題", h:"暖身：猜猜看，對還是不對？",
+/* 3 */ {t:"ox", tag:"互動・圈叉題", h:"暖身：猜猜看，對還是不對？",
   items:[
     {q:"血壓高的人，一定會頭痛、脖子硬。", a:false,
      fb:"<b>不一定！</b>大部分的高血壓<b>沒有感覺</b>，所以被叫做「沉默的殺手」。舒不舒服，不能拿來判斷血壓——<b>要靠量的</b>。"},
@@ -581,7 +634,7 @@ const DECK = {
      fb:"<b>對！</b>剛起床、吃飽、生氣、運動、天氣冷，血壓都會變。所以要<b>固定時間、用固定方法</b>量，數字才比得出來。"}],
   note:"一題一題唸，請長輩<b>比手勢</b>：⭕ 或 ❌。請各據點工作人員回報「大部分比哪個」，老師再點答案。第一題是今天的重點觀念，台語可以這樣講：<b>「血壓懸，毋是一定會頭殼痛——伊是恬恬仔來的，所以愛靠量。」</b>第二題順勢埋伏筆：既然會起起落落，就要「固定時間量」——等一下講 722 原則會回來。"},
 
-/* 4 */ {t:"meter", tag:"核心提問 1", core:true, h:"血壓機講啥物？三個數字認識一下",
+/* 4 */ {sec:"看懂血壓", t:"meter", tag:"提問①・看懂數字", core:true, h:"血壓機講啥物？三個數字認識一下",
   lead:"點一下螢幕上的數字，看看它叫什麼名字。",
   read:{sys:135,dia:85,pul:72,time:"7:30"},
   items:[
@@ -590,7 +643,7 @@ const DECK = {
     {k:"脈搏（心跳）", tw:"台語：心跳、脈", v:"心臟<b>一分鐘跳幾下</b>。它<b>不是血壓</b>，但一起記下來，醫師很需要。"}],
   note:"這頁是全課的核心。先請長輩<b>握拳、放開</b>，跟著做三次：「握——心臟出力共血搾出去，這是<b>收縮壓</b>；放——心臟歇睏，這是<b>舒張壓</b>。」再用<b>澆花的水管</b>比喻：水龍頭開大，管仔硬硬（收縮壓）；水龍頭轉小，管仔內猶原有水、有壓力（舒張壓）。台語口訣：<b>「頂懸是出力，下底是歇睏，上尾是心跳。」</b>點螢幕時邊問：「這个數字叫啥物？」讓長輩先猜再揭曉。"},
 
-/* 5 */ {t:"choice", tag:"互動二・選擇題", h:"考考您：哪一個是心跳？",
+/* 5 */ {t:"choice", tag:"互動・選擇題", h:"考考您：哪一個是心跳？",
   mon:{sys:142,dia:88,pul:76,time:"7:30"},
   q:"這台血壓機上的數字，哪一個是「心臟一分鐘跳幾下」？",
   opts:["上面的 142","中間的 88","下面的 76","左上角 7:30"], ans:2,
@@ -607,14 +660,34 @@ const DECK = {
   src:"資料來源：2022 台灣高血壓治療指引（台灣心臟學會、台灣高血壓學會，以居家血壓 130/80 為標準）；衛福部國民健康署（正常血壓應小於 120/80）",
   note:"重點一句：<b>「頂懸、下底，有一个超過就算。」</b>舉例問：「量著 128／84，算佗一色？」（答：黃燈要注意——因為下面 84 超過 80，有長輩會只看上面）。要強調三件事：①這是<b>在家量</b>的標準，醫院量常常比較高；②<b>已經在吃藥的人，目標照醫師交代的</b>；③紅色緊急那格，台語記法<b>「面歪、手軟、大舌——緊叫 119」</b>，不是要嚇人，是要大家記得第一時間求救。"},
 
-/* 7 */ {t:"choice", tag:"互動三・選擇題", h:"台灣有多少人，不知道自己血壓高？",
+/* 7 */ {t:"choice", tag:"互動・選擇題", h:"台灣有多少人，不知道自己血壓高？",
   q:"國健署調查：台灣 20 歲以上有高血壓的人，大約幾成「自己不知道」？",
   opts:["大約一成","大約三成","大約五成","大約七成"], ans:1,
   fb:"答案是<b>大約三成</b>。台灣成人大約<b>每 4 個人就有 1 個</b>血壓高（約 529 萬人），年紀越大越多。全世界約有 <b>14 億人</b>有高血壓，控制好的只有<b>五分之一多一點</b>。<br>心臟病、腦中風、高血壓疾病，都在國人十大死因裡——<b>會量、會看、會記，就是最好的保護</b>。",
   src:"資料來源：國健署 2017–2020 國民營養健康狀況變遷調查（成人盛行率 26.8%）；WHO 全球高血壓報告 2025；衛福部 113 年死因統計（心臟病第 2、腦血管第 4、高血壓性疾病第 6）",
   note:"比手指頭作答。揭曉後<b>不要恐嚇</b>，要這樣接：「三成的人毋知——毋是因為伊無注意，是因為<b>高血壓無感覺</b>。所以咱今仔日學會曉量，就已經贏一半矣。」也可以問：「咱據點有血壓機無？誰固定咧量？」讓長輩自己說出據點的資源。"},
 
-/* 8 */ {t:"film", tag:"互動・電影法①", h:"紙劇場小電影：阿雪姨量血壓",
+/* 8 */ {t:"points", tag:"提問①・為什麼會高", core:true, h:"為什麼血壓會高？",
+  lead:"有的改不動，有的改得動——<b>力氣要花在改得動的</b>。",
+  cols:3, items:[
+    {c:"a", k:"🔒 改不動・年紀", v:"血管像水管，用久了會變硬、變窄。"},
+    {c:"a", k:"🔒 改不動・體質", v:"爸媽有高血壓，自己的機會就比較高。"},
+    {c:"a", k:"🔒 改不動・天氣", v:"天一冷血管就收縮，血壓自然往上跳。"},
+    {c:"b", k:"🔑 改得動・口味", v:"重鹹、沾醬、湯汁喝光，<b>鈉吃多</b>，血壓就上來。"},
+    {c:"b", k:"🔑 改得動・身形", v:"腰圍粗、體重重，心臟每一下都要多出力。"},
+    {c:"b", k:"🔑 改得動・菸酒", v:"抽菸傷血管，喝酒過量，血壓會跟著衝高。"}],
+  note:"問大家：「哪一項是改不動的？哪一項明天就能改？」台語：<b>「年歲、體質、天氣，咱改袂動；口味、身材、菸酒，攏改會動。」</b>回應開場第④句：少吃鹹確實有幫助，但<b>不能取代量血壓和看醫師</b>。天冷那格可以提醒：冬天快到了，早上起床、出門前要特別注意保暖。"},
+
+/* 9 */ {t:"stats", tag:"提問①・不控制會怎樣", core:true, h:"血壓一直高，會怎樣？",
+  items:[
+    {n:"2.8", u:"倍", d:"中風的風險"},
+    {n:"1.9", u:"倍", d:"心臟病的風險"},
+    {n:"1.7", u:"倍", d:"腎臟病的風險"},
+    {n:"6", u:"名", d:"高血壓性疾病的死因排名（心臟病第 2、中風第 4）"}],
+  src:"資料來源：衛福部「高血壓是無聲殺手」衛教資料（高血壓者 5 年內罹病風險比）；衛福部 113 年（2024）國人死因統計",
+  note:"這頁<b>不要嚇人</b>，重點是：<b>控制好，風險就降下來</b>。回應開場第③句：<b>傷腎的是長期沒控制好的高血壓</b>，不是降血壓藥本身——藥有疑問，帶藥袋問醫師、藥師。台語：<b>「血壓顧予好，中風、心臟、腰子攏較安全。」</b>"},
+
+/* 10 */ {sec:"量對、記對", t:"film", tag:"互動・電影法①", h:"紙劇場小電影：阿雪姨量血壓",
   lead:"先領三個任務，再看一部一分半的小電影（有旁白和大字幕），看完一起投票——<b>這一題沒有標準答案</b>。",
   poster:"img/film1.jpg", alt:"默片風格海報：阿雪姨量血壓",
   video:"video/film1.mp4", vposter:"video/film1-poster.jpg",
@@ -643,7 +716,7 @@ const DECK = {
     opts:["直接提醒她：「這樣量不準啦！」","陪她坐下來，一起重新量一次","建議她去藥局，請人教她量"]},
   note:"按「🎬 開演！」會直接播放約一分半的紙雕動畫（國語旁白＋大字幕，可隨時按暫停用台語補充；講師手冊 #notes 裡有每一幕的台語辯士台詞可參考）。<b>線上分享畫面一定要勾選分享音訊</b>（Google Meet 分享分頁時勾「分享分頁音訊」；Teams 開「包含電腦音效」；Zoom 勾「分享音效」），課前先測。看完<b>先回到三個任務</b>讓長輩說：任務一＝<b>啉咖啡、蹈樓梯、無歇睏</b>；任務二＝<b>講電話、喘猶未停就量</b>；任務三＝<b>量足濟擺揀上低的寫，醫師看著的是假的正常</b>。投票<b>沒有標準答案</b>，只計票：三種說法都出於關心，問各據點「你會按怎講？」——帶出「<b>用陪伴代替指正</b>」。可順勢問一句感受：「若是你是阿雪姨，予人講『按呢量毋著』，你會歡喜無？」"},
 
-/* 9 */ {t:"pic", tag:"互動四・看圖找錯", h:"阿雪姨重新量，這次對了嗎？",
+/* 11 */ {t:"pic", tag:"互動・看圖找錯", h:"阿雪姨重新量，這次對了嗎？",
   lead:"圖上有 8 個號碼，其中 <b>4 個做錯了</b>。點號碼會放大給大家看：這樣做，可以嗎？",
   need:4,
   img:"img/spot-bad.jpg", iw:1536, ih:1024, alt:"阿雪姨穿厚外套、邊講手機邊量血壓的插圖",
@@ -659,7 +732,7 @@ const DECK = {
   fb:"四個要改：<b>講電話、身體前彎背沒靠、隔著外套綁袖帶、翹腳</b>。<br>記住口訣：<b>背靠椅、腳踩平、手放桌、綁皮膚、不講話</b>。",
   note:"帶法：<b>點一個號碼，會跳出放大特寫</b>，先問全班「這樣做，可以嗎？」，請大家比 ⭕ 或 ❌、各據點回報後，再按「揭曉答案」（按 Enter 或空白鍵也可以），看完按「關閉」換下一個號碼。點到做對的（亮綠色）要大力肯定：「這个做著好！」誘答的四個（血壓機、手放桌、紀錄本、藥盒）都是好習慣。最多人會漏掉的是<b>「隔外套綁」</b>——冬天快到了，長輩常常懶得脫外套，台語提醒：<b>「袖帶愛縛佇肉頂，毋通縛佇衫仔頂。」</b>四個錯誤都找到後，關閉特寫會跳出總整理。"},
 
-/* 10 */ {t:"pose", tag:"跟老師做・姿勢示範", h:"正確量血壓：五句口訣跟我做",
+/* 12 */ {t:"pose", tag:"跟老師做・姿勢示範", h:"正確量血壓：五句口訣跟我做",
   img:"img/spot-good.jpg", iw:1536, ih:1024, ph:520, alt:"阿嬤坐正、背靠椅背、手放桌上，用手臂式血壓計正確量血壓的插圖",
   marks:[{x:300,y:430,bx:140,by:420,z:2.4},{x:740,y:910,bx:890,by:950,z:2.6},{x:830,y:380,bx:850,by:290,z:3},
          {x:585,y:345,bx:640,by:255,z:3.2},{x:505,y:195,bx:620,by:118,z:3.4}],
@@ -672,7 +745,7 @@ const DECK = {
     {k:"不講話", v:"按下開始，安靜不動，等它量完"}],
   note:"這頁<b>全體一起做</b>。老師在鏡頭前坐好示範，每點一句口訣，長輩跟著做一個動作：背靠好、腳踩平、手放桌、另一手摸一摸上臂「綁這裡」、最後嘴巴閉起來「噓——」。台語口訣（可以唸三遍）：<b>「尻脊骿靠椅、跤踏予平、手囥桌頂、縛佇肉頂、恬恬仔量。」</b>請據點有血壓機的，<b>現場找一位長輩示範量</b>，其他人當「糾察隊」幫忙看姿勢對不對。"},
 
-/* 11 */ {t:"record", tag:"認識紀錄", h:"722 原則：量多少，就寫多少",
+/* 13 */ {t:"record", tag:"認識紀錄", h:"722 原則：量多少，就寫多少",
   dgs:[
     {d:"7", k:"連續量 7 天", v:"例如回診前的一個禮拜"},
     {d:"2", k:"早上、晚上各一次", v:"早上：起床 1 小時內、上完廁所、吃藥和早餐之前<br>晚上：睡覺前"},
@@ -684,7 +757,23 @@ const DECK = {
   src:"資料來源：衛福部國民健康署「722 原則」；2022 台灣高血壓治療指引",
   note:"把紀錄表<b>當成「血壓的日記」</b>介紹：日期、早晚、兩遍的數字和心跳、備註。重點三句：①<b>高的也要寫</b>，醫師才看得到真相；②<b>兩遍都寫</b>，醫師會自己算平均；③備註欄寫「沒睡好、頭暈、忘了吃藥」，對醫師很有幫助。台語口訣：<b>「七工、兩改、兩遍；量偌濟，寫偌濟。」</b>可以請據點工作人員課後印空白紀錄表給長輩。"},
 
-/* 12 */ {t:"film", tag:"互動・電影法②", h:"紙劇場小電影：阿坤伯看醫生",
+/* 14 */ {t:"sort", tag:"互動・分類題", h:"這九件事，各歸各位",
+  lead:"先點一張卡片，再點下面的籃子。",
+  bins:[{id:"a",t:"🩺 量血壓要做的"},{id:"b",t:"🧂 日常要少的"},{id:"c",t:"👩‍⚕️ 要找醫師的"}],
+  items:[
+    {x:"量前先坐著休息",b:"a"},{x:"坐好靠背腳踩地",b:"a"},{x:"連續七天早晚量",b:"a"},
+    {x:"醃漬品和罐頭湯",b:"b"},{x:"沾醬和整碗湯汁",b:"b"},{x:"菸和過量的酒",b:"b"},
+    {x:"血壓連幾天偏高",b:"c"},{x:"藥快吃完要回診",b:"c"},{x:"頭暈手麻講不清",b:"c"}],
+  fb:"<b>量血壓要做的</b>：先休息、坐好、照 722 量。<b>日常要少的</b>：醃漬、湯汁沾醬、菸酒。<b>要找醫師的</b>：連幾天偏高、藥快吃完、頭暈手麻講不清——<b>如果是突然臉歪手軟、講話不清楚，馬上打 119</b>。",
+  note:"線上上課時，請各據點<b>喊出籃子號碼</b>（1、2、3），老師點卡片放進去。「頭暈手麻講不清」要特別停一下：如果是<b>突然</b>發生，就不是等回診，是<b>馬上打 119</b>。"},
+
+/* 15 */ {t:"order", tag:"互動・排序題", h:"血壓偏高，怎麼辦？",
+  lead:"依序點卡片，把五個步驟排出來。點錯了按「重來」。",
+  items:["先坐下休息，隔一下再量一遍確認","連續七天早晚量，把數字通通記下來","帶著血壓紀錄去看醫師","照醫師交代吃藥，藥快吃完先回診","繼續量、繼續記，回診再給醫師看"],
+  fb:"五步：<b>確認 → 連量七天 → 帶紀錄看醫師 → 照醫囑吃藥 → 繼續量繼續記</b>。<br>⚠️ 如果血壓突然很高，又有<b>胸痛、臉歪、手無力、講話不清楚</b>，不用排步驟——<b>馬上打 119</b>。",
+  note:"可以讓兩個據點<b>比賽</b>，看哪一邊先排對（各據點用手指比第幾張）。排完帶大家用台語念一次：<b>「先確認、量七工、紮紀錄、照醫囑、繼續記。」</b>"},
+
+/* 16 */ {sec:"用藥與看診", t:"film", tag:"互動・電影法②", h:"紙劇場小電影：阿坤伯看醫生",
   lead:"第二部小電影！一樣先領三個任務，再看一分半的紙劇場（有旁白和大字幕），看完一起投票——<b>每個選項都有道理</b>。",
   poster:"img/film2.jpg", alt:"默片風格海報：阿坤伯看醫生",
   video:"video/film2.mp4", vposter:"video/film2-poster.jpg",
@@ -713,116 +802,88 @@ const DECK = {
     opts:["我的血壓，目標要多少？","這個藥怎麼吃，要注意什麼？","我平常適合做什麼運動？"]},
   note:"按「🎬 開演！」會直接播放約一分半的紙雕動畫（國語旁白＋大字幕，可隨時按暫停用台語補充；講師手冊 #notes 裡有每一幕的台語辯士台詞可參考）。<b>線上分享畫面一定要勾選分享音訊</b>（Google Meet 分享分頁時勾「分享分頁音訊」；Teams 開「包含電腦音效」；Zoom 勾「分享音效」），課前先測。演完回到任務：任務一＝<b>紀錄本</b>；任務二＝<b>自己加藥、自己停藥</b>；任務三讓長輩自由說。投票<b>沒有標準答案</b>——三句都是好問題，統計完請大家：<b>「把您選的那一句，寫在紀錄本的第一頁」</b>，這就是「看診小抄」。可以帶一句台語：<b>「藥仔欲加欲減，攏愛問醫生；想欲問的，先寫佇紙頂。」</b>"},
 
-/* 13 */ {t:"ox", tag:"互動五・圈叉快問快答", h:"用藥與紀錄：對還是不對？",
+/* 17 */ {t:"ox", tag:"互動・圈叉快問快答", h:"用藥與紀錄：對還是不對？",
   items:[
     {q:"血壓量起來正常了，藥就可以自己停。", a:false,
      fb:"<b>不對！</b>量起來正常，常常就是<b>藥有效</b>的證明。要減藥、停藥、換藥，<b>都先問醫師</b>。"},
+    {q:"西藥吃久會傷腎，所以血壓藥能不吃就不吃。", a:false,
+     fb:"<b>不對！</b>長期<b>沒控制好的高血壓</b>，才是傷腎的大問題（腎臟病風險約 1.7 倍）。藥有疑問，<b>帶著藥袋問醫師、藥師</b>，不要自己停。"},
     {q:"量到比較高，也要照實寫下來。", a:true,
      fb:"<b>對！</b>高的低的都寫，醫師才看得到真相。覺得太高，先坐著休息 5 分鐘再量，<b>兩次都記下來</b>。"},
     {q:"看診前，先把想問的話寫在紙上。", a:true,
      fb:"<b>對！</b>看診時間短，寫一張「看診小抄」，<b>連同紀錄本一起帶去</b>，就不會走出診間才想起來。"}],
-  note:"三題快問快答，比 ⭕ ❌。第一題最重要：很多長輩覺得「好了就免食」，台語講法：<b>「血壓正常，是藥仔咧做工；家己停，血壓會閣起來。」</b>若有長輩說「藥吃了會傷腎」，不要當場爭辯，回應：「這个問題真好，寫落來，下擺問醫生、藥師。」——正好接到第三題。"},
+  note:"三題快問快答，比 ⭕ ❌。第一題最重要：很多長輩覺得「好了就免食」，台語講法：<b>「血壓正常，是藥仔咧做工；家己停，血壓會閣起來。」</b>第二題回應開場的「會洗腎」，不要爭辯，回應：「這个問題真好，紮藥袋去問醫生、藥師。」——正好接到最後一題「看診小抄」。"},
 
-/* 14 */ {t:"points", tag:"核心提問 2・3・4", core:true, h:"量血壓，對我有什麼好處？我能做什麼？",
+/* 18 */ {sec:"顧好血壓", t:"points", tag:"提問②・顧好血壓對誰好", core:true, h:"顧好血壓的四筆帳",
+  lead:"這四筆帳都是您自己的；您顧好自己，<b>家人、社區、健保也跟著輕鬆</b>。",
+  cols:2, items:[
+    {k:"💪 身體這筆", v:"中風、心臟病少一點，手腳還是自己的。"},
+    {k:"💰 荷包這筆", v:"少住一次院、少請一次看護，省的不只幾十個便當。"},
+    {k:"🚶 自由這筆", v:"能自己走去買菜、自己上廁所，不用人扶。"},
+    {k:"😊 心情這筆", v:"數字看得懂、心裡有底，就不會整天煩惱。"}],
+  note:"「荷包這筆」可以當場問：「請一位看護一個月大概要多少？」讓長輩自己喊。對別人的好處用一句帶過：<b>孩子不用請假輪班顧、會量的人還能帶厝邊一起量、少一個人中風住院，健保的錢就能用在更需要的地方</b>。台語：<b>「顧好家己，就是疼囝孫。」</b>"},
+
+/* 19 */ {t:"points", tag:"提問③・我做得到的", core:true, h:"我做得到的六件事",
+  lead:"不用一次做完，<b>先挑一件從今天開始</b>。",
   cols:3, items:[
-    {k:"💡 對我的好處", v:"• 早一步抓到「沉默的殺手」<br>• 在家量比較放鬆、比較準，<b>醫師調藥更有根據</b><br>• 家人看到紀錄，比較安心"},
-    {k:"🙋 我可以做的", v:"• 早晚量、照實寫<br>• 看診帶紀錄本、敢開口問<br>• <b>教厝邊、教孫子量</b>——用自己的經驗，說給下一代聽"},
-    {k:"🎁 我可以得到的", v:"• 免費量血壓：藥局、超商、農會、活動中心的「<b>722 安心血壓站</b>」<br>• 65 歲以上每年一次<b>免費成人健檢</b><br>• 衛生所、社區據點的健康服務"}],
-  src:"資料來源：國民健康署「722 安心血壓站」（遍布 22 縣市、持續增加）、成人預防保健服務",
-  note:"三欄對應三個提問：好處、貢獻、資源。「我可以做的」第三點是<b>只有長輩做得到的</b>——「我是按怎發現血壓懸的」這種親身經驗，講給孫子聽，比任何衛教都有力。問一位長輩：「你上早是按怎知影家己血壓懸的？」讓他說。<b>課前請把這頁換成在地資訊</b>：伸港鄉衛生所、附近哪幾家藥局是安心血壓站、據點的血壓機放哪裡。講完這頁，<b>前半段結束，準備起來運動</b>。"},
+    {k:"① 會量", v:"照 722：連七天、早晚各一次、每次兩遍。"},
+    {k:"② 會記", v:"準備一本小本子，寫上日期和數字，回診帶著。"},
+    {k:"③ 減鹹", v:"湯汁少喝、沾醬少沾，用蔥薑蒜、檸檬提味。"},
+    {k:"④ 動起來", v:"一週累積走 150 分鐘，散步、太極、健康操都算。"},
+    {k:"⑤ 按時吃", v:"藥照醫師交代吃，快吃完先回診，不舒服就說。"},
+    {k:"⑥ 傳下去", v:"把量血壓的習慣做給孩子孫子看——<b>只有您做得到</b>。"}],
+  src:"722 原則出自 2022 台灣高血壓治療指引；每週 150 分鐘身體活動建議出自國民健康署",
+  note:"請各據點<b>比手指頭</b>選一件「明天就做」的。第⑥件是只有長輩做得到的：<b>「孫仔頭一擺看人量血壓，看的就是你。」</b>問一位長輩：「您會怎樣教孫子量？」"},
 
-/* 15 */ {t:"points", tag:"運動時間", h:"坐著動，血壓穩：運動前先看三件事",
-  img:"img/exercise.jpg", alt:"一群長輩坐在椅子上一起舉手做運動的插圖",
-  lead:"椅子要穩、不要有輪子。強度的標準：<b>還能講話、但唱不了歌</b>，就剛剛好。",
-  cols:1, items:[
-    {k:"① 先量一下", v:"運動前血壓若 <b>180/110 以上</b>，今天先坐著休息，回去問醫師。"},
-    {k:"② 數出聲音", v:"每個動作都<b>大聲數拍子</b>——數出聲，就不會憋氣。"},
-    {k:"③ 不舒服就停", v:"<b>胸悶、胸痛、頭暈、很喘</b>，馬上停下來坐好，告訴工作人員。"}],
-  note:"運動段開始。請據點工作人員<b>巡一圈</b>：椅子穩不穩、有沒有輪子、長輩有沒有穿好走的鞋。台語：<b>「運動的時陣，愛算出聲，毋通憋氣。」</b>今天的動作都<b>坐著做、不用道具</b>，跟不上的長輩做「輕鬆版」就好。後面每一頁右上角有<b>數拍器</b>，按「開始數」就會跟著動作計數，老師帶頭用台語數「一、二、三、四……」。"},
+/* 20 */ {t:"points", tag:"提問④・我能得到的", core:true, h:"台灣給您的靠山",
+  lead:"這些是您的權益，<b>不是給人添麻煩</b>。",
+  cols:3, items:[
+    {k:"🩺 免費健檢", v:"成人預防保健：65 歲以上<b>每年一次</b>，量血壓、驗血糖血脂。"},
+    {k:"📄 慢性處方箋", v:"血壓穩定可請醫師開慢箋，一次領久一點，少跑幾趟。"},
+    {k:"📍 安心血壓站", v:"藥局、超商、農會、活動中心的「722 安心血壓站」，<b>免費量</b>。"},
+    {k:"☎️ 長照專線 1966", v:"問照顧、問服務、問補助，都可以打。"},
+    {k:"💳 健保卡", v:"醫師看得到您的用藥紀錄，不怕重複拿藥。"},
+    {k:"🚑 緊急打 119", v:"臉歪、手軟、話不清，<b>不要等</b>，直接叫救護車。"}],
+  src:"資料來源：國民健康署成人預防保健服務、722 安心血壓站；衛福部長照專線 1966",
+  note:"<b>課前請換成在地資訊</b>：伸港鄉衛生所、附近哪幾家藥局是 722 安心血壓站、溪底據點的血壓計放哪裡。長輩最想知道的是「明天去哪裡、帶什麼」——答案通常是：<b>健保卡</b>。健檢與篩檢資格年年調整，以衛生所公告為準。"},
 
-/* 16 */ {t:"move", tag:"運動①・暖身", h:"雙手舉高，深呼吸",
-  cues:["吸氣～ 雙手慢慢往前舉高","吐氣～ 雙手慢慢放下來"],
-  reps:"做 8 次", gain:"練：肩膀活動、胸口打開、放鬆心情",
-  easy:"手舉到肩膀高就好", hard:"舉到最高，停兩拍再放",
-  safe:"吐氣要慢、要長；肩膀會痛就不勉強",
-  vb:"40 -12 340 342",
-  kf:[{p:{nh:[156,12],fh:[148,16],hd:-6},d:3000,cue:0,lab:"吸～"},{p:{},d:4000,cue:1,lab:"吐～",cnt:1}],
-  note:"開場最溫和的動作。老師用台語慢慢帶：<b>「吸——手舉懸；吐——手放落。」</b>吐氣要比吸氣長。提醒有五十肩、肩膀痛的長輩：舉到不痛的高度就好。做的時候可以問一句：「這馬心情有較輕鬆無？」"},
+/* 21 */ {sec:"總複習與承諾", t:"spot", tag:"互動・大魔王找錯", h:"最後一關：九張裡，哪五張有問題？",
+  lead:"一張一張看：<b>這樣做，可以嗎？</b>有五張有問題，其他都是好習慣。",
+  need:5,
+  cards:[
+    {x:"頭暈就自己多吃一顆藥", w:1, why:"自己加藥很危險，血壓可能掉太低反而跌倒。先量、記下來，打電話問醫師或藥師。"},
+    {x:"隨身帶用藥紀錄卡", d:1, ok:"萬一在外面不舒服，救護人員和醫師馬上知道您在吃什麼藥。"},
+    {x:"沒感覺就不用看醫師", w:1, why:"高血壓多半沒感覺，等有感覺常常已經傷到器官。有數字就要給醫師看。"},
+    {x:"保健食品代替血壓藥", w:1, why:"保健食品不能取代藥。想搭配什麼，先把品名拿去問醫師或藥師。"},
+    {x:"天冷出門先加外套", d:1, ok:"保暖是最省錢的血壓管理，頭、脖子、手腳顧好，血壓不會突然衝高。"},
+    {x:"洗完熱水澡馬上出門", w:1, why:"溫差大，血管急速收縮，血壓容易飆。先在室內緩一下、加件外套再出門。"},
+    {x:"回診帶血壓本給醫師", d:1, ok:"醫師最想看的就是這個，一整排數字比當天量的那一次可靠太多。"},
+    {x:"把 119 寫在電話旁", d:1, ok:"緊急時人會慌，寫在看得到的地方，家人也找得到。"},
+    {x:"臉歪手軟先躺著等", w:1, why:"這是中風警訊，等待會錯過黃金時間。立刻打 119，記住症狀開始的時間。"}],
+  fb:"五個要改：<b>自己加藥、沒感覺不看醫師、保健食品代替藥、熱水澡後馬上出門、臉歪手軟還在等</b>。<br>記住兩句話：<b>藥的事，問醫師藥師；臉歪手軟，馬上打 119。</b>",
+  note:"帶法：一張一張唸，問「<b>這樣做，可以嗎？</b>」請大家比 ⭕ 或 ❌，再點卡片揭曉。四張好習慣點到會亮藍色，要大力稱讚。「臉歪手軟」那張請停下來，台語記法：<b>「面歪、手軟、大舌——緊叫 119。」</b>"},
 
-/* 17 */ {t:"move", tag:"運動②・暖身", h:"腳踝踩油門",
-  cues:["腳尖往上翹，腳跟踩地","腳尖往下踩，腳跟抬起來"],
-  reps:"兩腳一起，16 下", gain:"練：小腿幫浦——幫血液回流，腳比較不腫",
-  easy:"一隻腳一隻腳輪流做", hard:"加快一點，配合拍手",
-  safe:"小腿抽筋就停下來，輕輕按摩",
-  vb:"40 30 340 300",
-  kf:[{p:{nf:-30,ff:-30},d:800,cue:0,lab:"翹"},{p:{nf:34,ff:34},d:800,cue:1,lab:"踩",cnt:1}],
-  note:"台語叫做<b>「踏油門」</b>，長輩很有感：「翹起來——踏落去」。這個動作坐車、看電視都能做。可以加一點趣味：「咱來駛車去鹿港！油門踏落去——」配合節奏一起數。"},
+/* 22 */ {t:"fill", tag:"互動・填空題", h:"帶回去：把今天的重點填起來",
+  lead:"點下面的詞，再點空格。填完請大家<b>大聲念一次</b>。",
+  bank:["722","135","130/80","140/90","119","1966"],
+  lines:[
+    {pre:"在家量血壓要照「", ans:"722", post:"」：連七天、早晚各量、每次兩遍。"},
+    {pre:"在家量的血壓超過 ", ans:"130/80", post:"，就要帶紀錄去跟醫師說。"},
+    {pre:"看到臉歪、手軟、話不清，馬上打 ", ans:"119", post:"，並記下發作的時間。"}],
+  fb:"三句帶回家：<b>照 722 量、超過 130/80 給醫師看、臉歪手軟打 119</b>。念出來的承諾，最記得住。",
+  note:"誘答詞：135（舊的居家標準）、140/90（醫院量的舊標準）、1966（長照專線，不是急救）——長輩選錯時順勢說明差別。填完請全體<b>大聲念三遍</b>。"},
 
-/* 18 */ {t:"move", tag:"運動③・有氧", h:"坐著原地踏步走",
-  cues:["右腳抬、左手往前擺","左腳抬、右手往前擺"],
-  reps:"數 32 步，做 2 輪", gain:"練：心肺耐力、走路的腳力——規律運動，有助血壓穩定",
-  easy:"腳抬低一點，手放大腿上", hard:"膝蓋抬高、手擺大一點",
-  safe:"保持還能講話的速度，邊踏邊數",
-  vb:"40 20 340 310",
-  kf:[{p:{na:[226,266],fh:[212,150],nh:[134,204]},d:520,cue:0,lab:"右",cnt:1},{p:{},d:420,cue:0,lab:"右"},
-      {p:{fa:[220,266],nh:[214,150],fh:[130,204]},d:520,cue:1,lab:"左",cnt:1},{p:{},d:420,cue:1,lab:"左"}],
-  note:"這是今天的主要有氧運動。老師帶頭用台語數步數：<b>「一、二、三、四……」</b>做到微微喘、還能回答問題就好。可以邊踏邊問：「咱這馬行到佗位矣？行到伸港媽祖宮矣無？」用想像散步增加趣味。"},
-
-/* 19 */ {t:"move", tag:"運動④・有氧", h:"坐著出拳，喊出聲",
-  cues:["右手出拳，喊「嘿！」","左手出拳，喊「嘿！」"],
-  reps:"左右各 10 下", gain:"練：手臂力氣、肩膀穩定；喊出聲＝不憋氣",
-  easy:"慢慢推出去就好", hard:"出拳時，腳也一起踏步",
-  safe:"手肘不要甩到最直；出拳時一定要吐氣出聲",
-  vb:"40 20 340 310",
-  kf:[{p:{nh:[248,124],fh:[168,146]},d:600,cue:0,lab:"嘿！",cnt:1},{p:{nh:[170,146],fh:[168,146]},d:480,cue:0,lab:""},
-      {p:{fh:[244,126],nh:[170,146]},d:600,cue:1,lab:"嘿！",cnt:1},{p:{nh:[170,146],fh:[168,146]},d:480,cue:1,lab:""}],
-  note:"<b>喊出聲是重點</b>——出力時喊「嘿！」就不會憋氣，這對血壓高的人特別重要。線上上課可以請各據點<b>輪流喊</b>：「溪底的，嘿！」讓據點之間有互動。"},
-
-/* 20 */ {t:"game", tag:"運動⑤・腦力遊戲", h:"血壓三兄弟：看到就做！",
-  lead:"螢幕亮哪一個，就做那個動作。先想一下，提示會慢一步出來喔！",
-  rules:[
-    {k:"收縮壓", e:"🙌", a:"雙手舉高"},
-    {k:"舒張壓", e:"👐", a:"雙手拍大腿"},
-    {k:"脈搏", e:"❤️", a:"輕拍胸口兩下"}],
-  note:"這是把前半段的知識<b>融進運動</b>的遊戲：收縮壓（頂懸）→手舉懸；舒張壓（下底）→拍大腿；脈搏（心跳）→拍胸坎。先按「下一題」慢慢玩，熟了按「自動出題」。最後挑戰<b>「🔀 顛倒做」</b>：收縮壓改拍大腿、舒張壓改舉手——動腦又動身，長輩做錯會笑成一團，很熱場。"},
-
-/* 21 */ {t:"move", tag:"運動⑥・肌力", h:"坐著踢腳，腳有力",
-  cues:["右腳慢慢往前踢直，腳尖勾起來","停住數 1、2、3，再慢慢放下"],
-  reps:"左右各 8 下", gain:"練：大腿前側——起身、走路、爬樓梯都靠它",
-  easy:"踢一半高就好", hard:"踢直之後停 5 拍",
-  safe:"數出聲音不憋氣；膝蓋痛就減少角度",
-  vb:"40 30 360 300",
-  kf:[{p:{na:[292,250]},d:1400,cue:0,lab:"踢"},{p:{na:[292,250]},d:1600,cue:1,lab:"1、2、3"},{p:{},d:1400,cue:1,lab:"放",cnt:1}],
-  note:"示範一邊做完再換腳（圖上是右腳）。用台語數：<b>「踢——一、二、三——放。」</b>強調<b>放下來要慢</b>，慢慢放才練得到力。提醒：做的時候屁股坐穩、手可以扶椅子兩邊。"},
-
-/* 22 */ {t:"move", tag:"運動⑦・肌力", h:"慢慢站起來，慢慢坐下去",
-  cues:["屁股往前坐，身體往前傾，站起來","站穩了，再慢慢坐回去"],
-  reps:"5～8 次", gain:"練：腳力和平衡——上廁所、起床都用得到",
-  easy:"屁股離開椅子一點點就好", hard:"雙手交叉放胸前",
-  safe:"起身要慢，頭暈就先坐好；有吃血壓藥的人更要慢",
-  vb:"30 -46 350 376",
-  kf:[{p:{H:[134,222],t:38,nh:[214,214],fh:[208,214],na:[205,306],fa:[199,306]},d:900,cue:0,lab:"傾"},
-      {p:{H:[178,182],t:30,nh:[232,206],fh:[226,206],na:[205,306],fa:[199,306]},d:900,cue:0,lab:"起"},
-      {p:{H:[202,142],t:3,nh:[214,158],fh:[208,158],na:[205,306],fa:[199,306]},d:900,cue:0,lab:"站"},
-      {p:{H:[202,142],t:3,nh:[214,158],fh:[208,158],na:[205,306],fa:[199,306]},d:800,cue:1,lab:"站穩"},
-      {p:{H:[178,182],t:30,nh:[232,206],fh:[226,206],na:[205,306],fa:[199,306]},d:1100,cue:1,lab:"慢慢"},
-      {p:{H:[134,222],t:38,nh:[214,214],fh:[208,214],na:[205,306],fa:[199,306]},d:1000,cue:1,lab:"坐"},
-      {p:{H:[130,222],t:0,nh:[200,214],fh:[194,212],na:[205,306],fa:[199,306]},d:800,cue:1,lab:"好",cnt:1}],
-  note:"<b>安全第一</b>：請工作人員確認椅子靠牆、沒有輪子；平衡不好的長輩，前面放一張桌子或椅背讓他扶。台語口令：<b>「鼻仔頭超過跤頭趺，才徛起來。」</b>（身體往前傾，重心才會到腳上。）有吃降血壓藥的長輩，起身容易頭暈，<b>站起來先停一下</b>再坐。"},
-
-/* 23 */ {t:"breathe", tag:"運動⑧・收操", h:"放鬆收操：慢慢吸、長長吐",
-  cues:["吸氣 4 拍：鼻子慢慢吸","吐氣 6 拍：嘴巴像吹蠟燭，長長吐"],
-  reps:"做 6 回合", gain:"慢慢呼吸，讓心跳和血壓緩下來",
-  safe:"運動完，至少休息 30 分鐘，再量血壓才準",
-  note:"關燈般的收尾，聲音放輕：<b>「吸——二、三、四；吐——二、三、四、五、六。」</b>吐氣比吸氣長，人會比較放鬆。最後一句跟前半段呼應：<b>運動完不要馬上量血壓</b>，休息半點鐘以上再量——這就是「量前半小時不運動」的道理。"},
-
-/* 24 */ {t:"pledge", tag:"行動承諾", h:"回家以後，我要做的那一件事",
+/* 23 */ {t:"pledge", tag:"行動承諾", h:"回家以後，我要做的那一件事",
   lead:"請舉手！老師幫您點亮。可以選很多個，至少選一個。",
-  items:["早晚量血壓，照 722 來量","量多少就寫多少，照實記","看診一定帶紀錄本","把想問的話先寫在紙上","藥不自己加、不自己停","每天坐著踏步動一動","去附近的安心血壓站量量看","教家人、厝邊一起量血壓"],
-  note:"請各據點長輩<b>舉手表態</b>，工作人員回報，老師點亮。最後數一數全部點亮幾項。可以請據點把長輩選的寫在紙上貼在據點的血壓機旁邊，下次上課開場就問：<b>「上擺承諾的代誌，有做著的請舉手！」</b>"},
+  items:["今晚睡前就量一次血壓","照 722 連量七天","量多少就寫多少，照實記","看診帶紀錄本和看診小抄","藥不自己加、不自己停","湯汁只喝幾口，用蔥薑蒜提味","把 119 寫在電話旁邊","做給孩子孫子看"],
+  note:"請各據點長輩<b>舉手表態</b>，工作人員回報，老師點亮。最後數一數全部點亮幾項。可以請據點把長輩選的寫在紙上貼在據點的血壓機旁邊，下次上課開場就問：<b>「上擺承諾的代誌，有做著的請舉手！」</b>時間夠的話，用 4F 問一兩位長輩：今天最記得哪個數字（事實）？聽到哪裡最有感（感受）？發現自己以前哪裡做錯（發現）？回去先做哪一件（未來）？"},
+
+/* 24 */ {t:"section", tag:"結語", h:"您本來就會的事",
+  lead:"煮飯懂得放多少鹽、天冷知道加外套、身體怪怪的自己會察覺——<br>這些本事，您早就有了。<br><br><b>今天只是多給您一台血壓計，和三個數字：<br>722、130/80、119。</b>",
+  note:"結語要慢、要停頓。這堂課不是教長輩新東西，是<b>肯定他們本來就有的生活智慧</b>，再補上三個數字。台語：<b>「恁本底就真厲害，今仔日只是加一台血壓機、三个數字。」</b>"},
 
 /* 25 */ {t:"score", tag:"成果", h:"今天的成績單",
-  note:"成績不重要，重點是最後一句話。台語收尾：<b>「血壓機咧講話，咱今仔日攏聽有矣！七工、兩改、兩遍，量偌濟、寫偌濟，紮去予醫生看。」</b>再一次<b>跟每個據點說再見</b>，感謝工作人員協助。"}
+  note:"成績不重要，重點是最後一句話。台語收尾：<b>「血壓機咧講話，咱今仔日攏聽有矣！七工、兩改、兩遍，量偌濟、寫偌濟，紮去予醫生看。」</b>最後跟各據點說再見、感謝工作人員協助。"}
 ]};
 
 /* =========================================================================
@@ -1035,7 +1096,7 @@ cover:s=>`<div class="numwrap"><div class="num">${s.num}</div></div>
   <div class="body" style="gap:.2em">
   <div class="kick">${s.kicker}</div>
   <h1>${s.h}</h1><div class="sub">${s.sub}</div><div class="meta">${s.meta}</div>
-  <div><span class="brand">${s.brand}</span></div>
+  <div><span class="brand">${s.photo?`<img class="cv-photo" src="${s.photo}" alt="${s.brand}">`:""}${s.brand}</span>${s.design?`<span class="cv-design">${s.design}</span>`:""}</div>
   <div class="swipe-tip">👉 手機上：左右滑動換頁，上下滑動看完整內容</div></div>
   ${s.img?`<img class="cv-img" src="${s.img}" alt="${s.alt||""}">`:""}`,
 
@@ -1149,6 +1210,30 @@ breathe:s=>head(s)+`<div class="body"><div class="br">
     <div class="safe">⏳ ${s.safe}</div>
   </div></div>`+acts(`<button class="btn or b-go">▶ 開始</button>`)+`</div>`,
 
+stats:s=>head(s)+`<div class="body"><div class="grid g${s.items.length>3?4:s.items.length}">`+
+  s.items.map(it=>`<div class="stat"><div class="n" data-to="${it.n}">${it.n}</div><div class="u">${it.u}</div><div class="d">${it.d}</div></div>`).join("")+
+  `</div></div>`+srcline(s),
+
+fill:s=>head(s)+`<div class="body">
+  <div class="tiles bank">`+shuffle(s.bank).map(w=>`<button class="tile" data-w="${w}">${w}</button>`).join("")+`</div>
+  <div class="blanks"><div class="blanks-in">`+s.lines.map((l,i)=>
+    `<div>${i+1}. ${l.pre}<span class="bk" data-i="${i}" data-a="${l.ans}">＿＿＿</span>${l.post}</div>`).join("")+
+  `</div></div>`+acts(`<button class="btn ck">對答案</button><button class="btn gh rs">重來</button>`)+`</div>`+srcline(s),
+
+order:s=>head(s)+`<div class="body">
+  <div class="tiles ord">`+shuffle(s.items.map((x,i)=>({x,i}))).map(o=>`<button class="tile" data-i="${o.i}">${o.x}</button>`).join("")+`</div>
+  `+acts(`<span class="cnt">已排 <b class="c0">0</b> / ${s.items.length}</span><button class="btn ck">對答案</button><button class="btn gh rs">重來</button>`)+`</div>`,
+
+spot:s=>head(s)+`<div class="body">
+  <div class="grid ${s.cards.length%3===0?'g3':'g4'}">`+s.cards.map((g,i)=>`<button class="scard" data-i="${i}"><span class="no">${i+1}</span><span>${g.x}</span></button>`).join("")+`</div>
+  `+acts(`<span class="cnt">找到 <b class="c0">0</b> / ${s.need}</span><button class="btn gh sw">顯示答案</button>`)+
+  fbbox("","👆 點卡片作答，這裡會告訴你為什麼").replace("fb idle","fb why idle")+`</div>`,
+
+sort:s=>head(s)+`<div class="body">
+  <div class="tiles pool">`+shuffle(s.items.map((o,i)=>({...o,i}))).map(o=>`<button class="tile" data-i="${o.i}">${o.x}</button>`).join("")+`</div>
+  <div class="grid g3 bins">`+s.bins.map(b=>`<div class="bin" data-b="${b.id}"><div class="bt">${b.t}</div><div class="items"></div></div>`).join("")+`</div>
+  `+acts(`<button class="btn ck">對答案</button><button class="btn gh rs">重來</button>`)+`</div>`,
+
 pledge:s=>head(s)+`<div class="body"><div class="grid g4">`+
   s.items.map(x=>`<div class="pl">${x}</div>`).join("")+
   `</div><div class="plc-line">全部據點已點亮 <span class="plc">0</span> 個承諾</div></div>`,
@@ -1174,6 +1259,10 @@ DECK.slides.forEach(s=>{
   if(s.t==="choice")maxStar+=1;
   if(s.t==="ox")maxStar+=s.items.length;
   if(s.t==="pic")maxStar+=s.need;
+  if(s.t==="fill")maxStar+=s.lines.length;
+  if(s.t==="order")maxStar+=1;
+  if(s.t==="spot")maxStar+=s.need;
+  if(s.t==="sort")maxStar+=s.items.length;
 });
 
 /* ---------- 互動綁定 ---------- */
@@ -1395,6 +1484,71 @@ function bind(d,s,i){
     d._stop=()=>{stop(); c.style.transition="none"; c.style.transform="scale(.55)"; t.innerHTML="準備<small>按下開始</small>"; cues.forEach(q=>q.classList.remove("on"))};
   }
 
+  if(s.t==="fill"){
+    let sel=null;
+    const clr=()=>{$$(".tile",d).forEach(t=>t.classList.remove("pick"));sel=null};
+    const put=b=>{ if(!sel)return;
+      if(b.dataset.v){const old=$$(".tile",d).find(x=>x.dataset.w===b.dataset.v); if(old)old.classList.remove("used")}
+      b.dataset.v=sel.dataset.w; b.textContent=sel.dataset.w; sel.classList.add("used"); clr(); };
+    $$(".tile",d).forEach(t=>t.onclick=()=>{ if(t.classList.contains("used")||d.dataset.done)return;
+      clr(); t.classList.add("pick"); sel=t; const bk=$$(".bk",d).find(b=>!b.dataset.v); if(bk)put(bk); });
+    $$(".bk",d).forEach(b=>b.onclick=()=>{ if(d.dataset.done)return; if(sel)put(b);
+      else if(b.dataset.v){ const t=$$(".tile",d).find(x=>x.dataset.w===b.dataset.v); if(t)t.classList.remove("used"); b.dataset.v=""; b.textContent="＿＿＿"; b.className="bk"; } });
+    $(".ck",d).onclick=()=>{ if(d.dataset.done)return;
+      let n=0; $$(".bk",d).forEach(b=>{const ok=b.dataset.v===b.dataset.a; b.classList.add(ok?"right":"wrong"); if(!ok)b.textContent=b.dataset.a; if(ok)n++});
+      d.dataset.done=1; addStar(n); ding(n===s.lines.length);
+      setTimeout(()=>d.classList.contains("on")&&showAns(n===s.lines.length?"🎉":"💪","答對 "+n+" / "+s.lines.length+" 格",s.fb),700); };
+    $(".rs",d).onclick=()=>{ d.dataset.done=""; $$(".bk",d).forEach(b=>{b.className="bk";b.dataset.v="";b.textContent="＿＿＿"}); $$(".tile",d).forEach(t=>t.className="tile"); };
+  }
+
+  if(s.t==="order"){
+    let seq=[];
+    const paint=()=>{ $$(".tile",d).forEach(t=>{ const p=seq.indexOf(+t.dataset.i); t.classList.toggle("pick",p>=0);
+        const o=$(".ord",t); if(o)o.remove(); if(p>=0)t.insertAdjacentHTML("beforeend",`<span class="ord">${p+1}</span>`); }); $(".c0",d).textContent=seq.length; };
+    $$(".tile",d).forEach(t=>t.onclick=()=>{ if(d.dataset.done)return; const k=+t.dataset.i, p=seq.indexOf(k); if(p>=0)seq.splice(p,1); else seq.push(k); paint(); });
+    $(".ck",d).onclick=()=>{ if(d.dataset.done)return; d.dataset.done=1;
+      const ok=seq.length===s.items.length&&seq.every((v,n)=>v===n);
+      $$(".tile",d).forEach(t=>{const k=+t.dataset.i; t.classList.remove("pick"); t.classList.add(seq.indexOf(k)===k?"right":"wrong");
+        const o=$(".ord",t); if(o)o.textContent=k+1; else t.insertAdjacentHTML("beforeend",`<span class="ord">${k+1}</span>`)});
+      if(ok)addStar(1); ding(ok);
+      setTimeout(()=>d.classList.contains("on")&&showAns(ok?"🎉":"💪", ok?"順序完全正確！":"正確順序，看卡片上的號碼", s.fb),700); };
+    $(".rs",d).onclick=()=>{ d.dataset.done=""; seq=[]; $$(".tile",d).forEach(t=>{t.className="tile";const o=$(".ord",t);if(o)o.remove()}); paint(); };
+  }
+
+  if(s.t==="spot"){
+    const why=$(".why",d); let n=0;
+    const L=s.cards.reduce((a,g)=>(g.x+(g.why||g.ok)).length>(a.x+(a.why||a.ok)).length?g:a);
+    why.dataset.full='⚠️ <b>'+L.x+'</b>：'+(L.why||L.ok);
+    $$(".scard",d).forEach(h=>h.onclick=()=>{
+      if(d.dataset.done||h.classList.contains("found")||h.classList.contains("safe"))return;
+      const g=s.cards[+h.dataset.i];
+      if(g.d){ h.classList.add("miss"); ding(0); setTimeout(()=>{h.classList.remove("miss");h.classList.add("safe")},350);
+        why.innerHTML="👍 <b>"+g.x+"</b>：這樣做很好——"+g.ok; why.classList.remove("idle"); return; }
+      h.classList.add("found"); n++; addStar(1); ding(1); $(".c0",d).textContent=n;
+      why.innerHTML="⚠️ <b>"+g.x+"</b>："+g.why; why.classList.remove("idle");
+      if(n>=s.need){d.dataset.done=1; setTimeout(()=>d.classList.contains("on")&&showAns("🏆","太棒了，"+s.need+" 個全部找到！",s.fb),1100)}
+    });
+    $(".sw",d).onclick=()=>{ $$(".scard",d).forEach(h=>{const g=s.cards[+h.dataset.i]; if(g.w&&!h.classList.contains("found"))h.classList.add("show")});
+      d.dataset.done=1; showAns("📖","答案都在這裡",s.fb); };
+  }
+
+  if(s.t==="sort"){
+    let sel=null;
+    $$(".pool .tile",d).forEach(t=>t.onclick=()=>{ if(d.dataset.done||t.classList.contains("used"))return;
+      $$(".tile",d).forEach(x=>x.classList.remove("pick")); t.classList.add("pick"); sel=t; });
+    $$(".bin",d).forEach(b=>b.onclick=()=>{ if(d.dataset.done||!sel)return;
+      const k=+sel.dataset.i, c=document.createElement("span");
+      c.className="chip"; c.dataset.i=k; c.dataset.b=b.dataset.b;
+      c.innerHTML=`<span>${s.items[k].x}</span><i class="x" title="拿回來">✕</i>`;
+      $(".x",c).onclick=e=>{ if(d.dataset.done)return; e.stopPropagation(); c.remove(); $$(".pool .tile",d).find(x=>+x.dataset.i===k).classList.remove("used"); };
+      $(".items",b).appendChild(c); sel.classList.add("used"); sel.classList.remove("pick"); sel=null; });
+    $(".ck",d).onclick=()=>{ if(d.dataset.done)return; d.dataset.done=1;
+      let n=0; $$(".chip",d).forEach(c=>{const ok=s.items[+c.dataset.i].b===c.dataset.b; c.classList.add(ok?"right":"wrong"); if(ok)n++});
+      addStar(n); ding(n===s.items.length);
+      setTimeout(()=>d.classList.contains("on")&&showAns(n===s.items.length?"🎉":"💪","分對 "+n+" / "+s.items.length+" 張",s.fb),700); };
+    $(".rs",d).onclick=()=>{ d.dataset.done=""; sel=null; $$(".chip",d).forEach(c=>c.remove()); $$(".tile",d).forEach(t=>t.className="tile"); };
+  }
+
   if(s.t==="pledge"){
     $$(".pl",d).forEach(p=>p.onclick=()=>{
       p.classList.toggle("on"); ding(1);
@@ -1451,8 +1605,7 @@ const TOC=$("#toc");
 function buildToc(){
   let h="", sec="";
   DECK.slides.forEach((s,k)=>{
-    const ns=k<14?"前半段：看懂血壓":"後半段：坐著運動";
-    if(ns!==sec){sec=ns;h+=`<div class="toc-sec">${ns}</div>`}
+    if(s.sec&&s.sec!==sec){sec=s.sec;h+=`<div class="toc-sec">${sec}</div>`}
     h+=`<button class="toc-it ${k===idx?'cur':''}" data-k="${k}"><i>${k+1}</i>${strip(s.h)}</button>`;
   });
   $(".toc-list",TOC).innerHTML=h;
@@ -1493,6 +1646,10 @@ function renderNotes(){
     if(s.scenes)h+=`<ol style="margin:.6em 0 0 1.4em;font-weight:600">`+s.scenes.map(c=>`<li><b>${strip(c.cap)}</b><br><span style="color:#9A4A12">🎙 辯士：${c.say}</span></li>`).join("")+`</ol>`;
     if(s.t==="ox")h+=`<ul style="margin:.6em 0 0 1.4em;font-weight:600">`+s.items.map(it=>`<li>${it.q}　→ ${it.a?"⭕":"❌"}</li>`).join("")+`</ul>`;
     if(s.t==="choice")h+=`<div style="margin-top:.4em;font-weight:700">✅ 答案：${s.opts[s.ans]}</div>`;
+    if(s.t==="fill")h+=`<div style="margin-top:.4em;font-weight:700">✅ 答案：${s.lines.map(l=>l.ans).join("、")}</div>`;
+    if(s.t==="order")h+=`<ol style="margin:.4em 0 0 1.4em;font-weight:700">${s.items.map(x=>`<li>${x}</li>`).join("")}</ol>`;
+    if(s.t==="spot")h+=`<div style="margin-top:.4em;font-weight:700">✅ 有問題的：${s.cards.map((c,j)=>c.w?(j+1)+" "+c.x:"").filter(Boolean).join("、")}</div>`;
+    if(s.t==="sort")h+=`<div style="margin-top:.4em;font-weight:700">${s.bins.map(b=>"✅ "+strip(b.t)+"："+s.items.filter(x=>x.b===b.id).map(x=>x.x).join("、")).join("<br>")}</div>`;
     if(s.t==="pic")h+=`<div style="margin-top:.4em;font-weight:700">✅ 錯的是：${s.hs.map((x,j)=>x.w?(j+1)+" "+x.n:"").filter(Boolean).join("、")}</div>`;
     h+=`</section>`;
   });
@@ -1519,6 +1676,7 @@ function go(n){
     $(".sc-em",d).textContent = r>=.9?"🏆":r>=.6?"🎉":"🌱";
   }
   fit(d); setTimeout(()=>{ if($(".slide.on")===d)fit(d) },90);
+  if(s.t==="stats")countUp(d);
   if(d._start)d._start();
   stopTimer();
 }
@@ -1553,6 +1711,15 @@ wrap.addEventListener("touchend",e=>{
   if(ANS.classList.contains("on")||TOC.classList.contains("on")||ZM.classList.contains("on"))return;
   if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6)go(idx+(dx<0?1:-1));
 },{passive:true});
+
+/* 數字動畫 */
+function countUp(d){
+  $$(".n",d).forEach(el=>{ const to=parseFloat(el.dataset.to); if(isNaN(to))return;
+    const dec=((el.dataset.to.match(/\.(\d+)/)||[,""])[1]).length; let t0=null;
+    const stepf=ts=>{ if(!t0)t0=ts; const p=Math.min(1,(ts-t0)/900);
+      el.textContent=p<1?(to*(1-Math.pow(1-p,3))).toFixed(dec):el.dataset.to; if(p<1)requestAnimationFrame(stepf); };
+    requestAnimationFrame(stepf); setTimeout(()=>{el.textContent=el.dataset.to},1200); });
+}
 
 /* 搶答計時器（講師自行決定要不要用） */
 let tid=null;
